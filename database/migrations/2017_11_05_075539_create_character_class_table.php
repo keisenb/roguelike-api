@@ -17,7 +17,7 @@ class CreateCharacterClassTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->integer('starting_health');
-            $table->integer('starting_attack');
+            $table->integer('starting_attack_bonus');
             $table->integer('starting_damage_bonus');
             $table->integer('starting_defense_bonus');
         });
