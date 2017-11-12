@@ -29,6 +29,7 @@ class AddKilledByToCharacterTable extends Migration
     public function down()
     {
         //
+        Schema::disableForeignKeyConstraints();
         Schema::table('characters', function(Blueprint $table){
             $table->dropColumn('killed_by');
         });
