@@ -1,8 +1,14 @@
 # Roguelike API
 
 ## Install Docker
-+ install docker - https://docs.docker.com/installation/
-+ install docker-compose - https://docs.docker.com/compose/install/
++ install docker - `sudo apt-get install docker`
++ install docker-compose - `sudo apt-get install docker-compose`
+
+## Install Composer
++ `curl -sS https://getcomposer.org/installer | php`
++ if you get a permissions issue run `sudo chmod -R 777 /home/<user>/.composer`
++ `sudo mv composer.phar /usr/local/bin/composer.phar`
++ `alias composer='/usr/local/bin/composer.phar'`
 
 ## Initial Setup (follow the steps carefully)
 + `git clone https://github.com/keisenb/cis560-team7-backend.git`
@@ -11,7 +17,7 @@
 + `./lumen seed` to seed the tables with starter data
 + go to http://localhost and you should see Lumen landing page (if everything is in order)
 
-#### Execute Artisan Command
+#### Execute Artisan Commands
 + `docker exec phpfpm php /srv/http/artisan <command goes here>`
 
 #### MySQL Connection Info
