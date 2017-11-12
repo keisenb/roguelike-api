@@ -1,7 +1,5 @@
 <?php
 
-use App\User;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +16,13 @@ $app->get('/', function () use ($app) {
     return $app->welcome();
 });
 
-$app->get('/users', function() {
-    return User::all();
-});
 
-$app->get('/user/{id}', function($id) use ($app) {
-    $user = User::query()->findOrFail($id);
-    return $user;
+/* Adds the /api prefix to the routes inside of this function*/
+$app->group(['prefix' => 'api', 'namespace' => 'App\Http\Controllers'], function () use ($app) {
+
+    //powerups
+    $app->get('/powerups', 'PowerUpController@GetPowerUps');
+    $app->get('/powerups/{id}', 'PowerUpController@GetPowerUp');
+
+    //todo
 });
