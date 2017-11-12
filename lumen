@@ -1,0 +1,37 @@
+#!/bin/bash
+
+help(){
+	echo "Usage:"
+	printf "\t down\t\t: Stop Lumen app.\n"
+	printf "\t h, help\t: Show this help.\n"
+	printf "\t t, install\t: Run docker installation and Lumen installation.\n"
+	printf "\t up\t\t: Launch Lumen app.\n"
+	exit 0
+}
+
+if [[ -z $1 ]];then
+	help
+	exit 0
+fi
+
+
+case $1 in
+	up)
+		sudo docker-compose up -d
+		;;
+	down)
+		sudo docker-compose down
+		;;
+	install)
+        composer.phar install -d ./html/lumen/
+        cp ./html/lumen/.env.example ./html/lumen/.env
+        sudo chmod -R 777 ./html/lumen/storage/
+        sudo docker-compose up -d
+        ;;
+	migrate)
+		docker exec phpfpm php /srv/http/artisan migrate
+		;;
+	* | h | help)
+		help
+		;;
+esac
