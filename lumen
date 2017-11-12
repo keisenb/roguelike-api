@@ -22,6 +22,9 @@ case $1 in
 	down)
 		sudo docker-compose down
 		;;
+	seed)
+		docker exec phpfpm php /srv/http/artisan db:seed
+		;;
 	install)
         composer.phar install -d ./html/lumen/
         cp ./html/lumen/.env.example ./html/lumen/.env
