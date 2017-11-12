@@ -1,0 +1,158 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Roguelike API",
+        "description": "Api documentation for roguelike game.",
+        "termsOfService": "",
+        "version": "1.0.0"
+    },
+    "host": "104.236.217.199",
+    "basePath": "/api",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/armors": {
+            "get": {
+                "tags": [
+                    "Armors"
+                ],
+                "summary": "lists all armors",
+                "responses": {
+                    "200": {
+                        "description": "A list with armors",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Armor"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "no armors in table, or an error."
+                    }
+                }
+            }
+        },
+        "/armors/{id}": {
+            "get": {
+                "tags": [
+                    "Armors"
+                ],
+                "summary": "list armor by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UUID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A armor object",
+                        "schema": {
+                            "$ref": "#/definitions/Armor"
+                        }
+                    },
+                    "404": {
+                        "description": "no armor w/ id found in table, or an error."
+                    }
+                }
+            }
+        },
+        "/powerups": {
+            "get": {
+                "tags": [
+                    "Power Ups"
+                ],
+                "summary": "lists all powerups",
+                "responses": {
+                    "200": {
+                        "description": "A list with powerups",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PowerUp"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "no powerups in table, or an error."
+                    }
+                }
+            }
+        },
+        "/powerups/{id}": {
+            "get": {
+                "tags": [
+                    "Power Ups"
+                ],
+                "summary": "list powerup by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UUID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A powerup object",
+                        "schema": {
+                            "$ref": "#/definitions/PowerUp"
+                        }
+                    },
+                    "404": {
+                        "description": "no powerup w/ id found in table, or an error."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "PowerUp": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "Armor": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "defense_value": {
+                            "type": "integer"
+                        },
+                        "strong_type": {
+                            "type": "integer"
+                        },
+                        "weak_type": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

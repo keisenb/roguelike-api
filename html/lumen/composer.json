@@ -8,7 +8,8 @@
         "php": ">=5.5.9",
         "laravel/lumen-framework": "5.1.*",
         "vlucas/phpdotenv": "~1.0",
-        "wn/lumen-generators": "^1.3"
+        "wn/lumen-generators": "^1.3",
+        "darkaonline/swagger-lume": "~1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0",

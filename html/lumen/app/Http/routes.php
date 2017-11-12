@@ -24,5 +24,9 @@ $app->group(['prefix' => 'api', 'namespace' => 'App\Http\Controllers'], function
     $app->get('/powerups', 'PowerUpController@GetPowerUps');
     $app->get('/powerups/{id}', 'PowerUpController@GetPowerUp');
 
+    //armors
+    $app->get('/armors', 'ArmorController@GetArmors');
+    $app->get('/armors/{id}', 'ArmorController@GetArmorById');
+
     //todo
 });

@@ -34,6 +34,15 @@ Run `./lumen up` to start the container
 To stop the container run `./lumen down`
 
 
+## Swagger Documentation
+When writing API Endpoints please add Swagger documentation to the endpoints to
+specify required parameters and expected responses.
+You can find more information about Swagger [here](https://github.com/zircote/swagger-php/blob/master/docs/Getting-started.md).
+
+Once you have added documentation to a controller endpoint you can regenerate
+the `/api/documentation` view with the following command:
++ `php artisan swagger-lume:generate`
+
 ## Uninstall Docker Contrainers
 
 #### Removing all running containers
