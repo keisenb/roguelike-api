@@ -1,22 +1,26 @@
-# Lumen PHP Framework
+## Starting Clean
++ install docker - https://docs.docker.com/installation/
++ install docker-compose - https://docs.docker.com/compose/install/
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+### Removing all running containers
+docker rm $(docker ps -a -q)
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+### Removing all images
+docker rmi $(docker images -q)
 
-## Official Documentation
+## Basic (follow the steps carefully)
++ git clone https://github.com/retroconduct/docker-lumen.git
++ docker-compose up (will download, build and start services)
++ docker ps (you will see all 3 services up and ports exposed)
++ rename html/lumen/.env-bkp to .env and set database configurations (read instruction in .env file)
++ docker exec phpfpm composer install -d /srv/http/ (alertnatively you can run composer locally and install vendors for lumen)
++ go to http://localhost and you should see Lumen landing page (if everything is in order)
 
-Documentation for the framework can be found on the [Lumen website](http://lumen.laravel.com/docs).
+## Lumen
++ sudo chown www-data:www-data -R storage/ (to give permissions to write for logs and such)
++ docker exec phpfpm php /srv/http/artisan migrate (this will create a sample migration)
++ docker exec phpfpm php /srv/http/artisan db:seed (seeds with sample data)
++ go to http://localhost/users and you should all user records
++ good to go then.
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
-# cis560-team7-backend
+This repository will be updated in due course with necessary modificatons.
