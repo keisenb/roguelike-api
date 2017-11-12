@@ -26,10 +26,11 @@ case $1 in
         composer.phar install -d ./html/lumen/
         cp ./html/lumen/.env.example ./html/lumen/.env
         sudo chmod -R 777 ./html/lumen/storage/
-		sudo docker-compose build
         sudo docker-compose up -d
-        docker exec phpfpm php /srv/http/artisan migrate
         ;;
+	migrate)
+		docker exec phpfpm php /srv/http/artisan migrate
+		;;
 	* | h | help)
 		help
 		;;
