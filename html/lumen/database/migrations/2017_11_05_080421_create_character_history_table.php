@@ -32,7 +32,9 @@ class CreateCharacterHistoryTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('character_history');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
     }
 }

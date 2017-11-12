@@ -26,7 +26,9 @@ class CreateInventoryItemsTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('inventory_items');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
     }
 }

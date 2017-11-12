@@ -28,7 +28,9 @@ class CreateLevelsTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('levels');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
     }
 }

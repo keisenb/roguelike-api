@@ -28,7 +28,9 @@ class CreateCharacterCanEquipInventoryItemTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('character_can_equip_inventory_item');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
     }
 }
