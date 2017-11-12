@@ -1,8 +1,8 @@
 # Roguelike API
 
 ## Install Docker
-+ install docker - `sudo apt-get install docker`
-+ install docker-compose - `sudo apt-get install docker-compose`
++ install [docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04)
++ install [docker-compose](https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04)
 
 ## Install Composer
 + `curl -sS https://getcomposer.org/installer | php`
