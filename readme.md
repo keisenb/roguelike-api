@@ -3,7 +3,7 @@
 + install docker-compose - https://docs.docker.com/compose/install/
 
 ### Removing all running containers
-`docker rm $(docker ps -a -q)``
+`docker rm $(docker ps -a -q)`
 
 ### Removing all images
 `docker rmi $(docker images -q)``
