@@ -1,52 +1,21 @@
-# Roguelike API
+## Lumen PHP Framework
 
-## Install Docker
-+ install docker - `sudo apt-get install docker`
-+ install docker-compose - `sudo apt-get install docker-compose`
+[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
+[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
+[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
+[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
+[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
 
-## Install Composer
-+ `curl -sS https://getcomposer.org/installer | php`
-+ if you get a permissions issue run `sudo chmod -R 777 /home/<user>/.composer`
-+ `sudo mv composer.phar /usr/local/bin/composer.phar`
-+ `alias composer='/usr/local/bin/composer.phar'`
+Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
 
-## Initial Setup (follow the steps carefully)
-+ `git clone https://github.com/keisenb/cis560-team7-backend.git`
-+ `./lumen install` to install dependencies and start container
-+ `./lumen migrate` to run the lumen migrations
-+ `./lumen seed` to seed the tables with starter data
-+ go to http://localhost and you should see Lumen landing page (if everything is in order)
+## Official Documentation
 
-#### Execute Artisan Commands
-+ `docker exec phpfpm php /srv/http/artisan <command goes here>`
+Documentation for the framework can be found on the [Lumen website](http://lumen.laravel.com/docs).
 
-#### MySQL Connection Info
-+ Username: `user`
-+ Password: `password`
-+ Port: `4406`
-+ Host: `127.0.0.1`
+## Security Vulnerabilities
 
-#### Starting Docker Containers
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
-Run `./lumen up` to start the container
+### License
 
-#### Stopping Docker Containers
-To stop the container run `./lumen down`
-
-
-## Swagger Documentation
-When writing API Endpoints please add Swagger documentation to the endpoints to
-specify required parameters and expected responses.
-You can find more information about Swagger [here](https://github.com/zircote/swagger-php/blob/master/docs/Getting-started.md).
-
-Once you have added documentation to a controller endpoint you can regenerate
-the `/api/documentation` view with the following command:
-+ `php artisan swagger-lume:generate`
-
-## Uninstall Docker Contrainers
-
-#### Removing all running containers
-`docker rm -f $(docker ps -a -q)`
-
-#### Removing all images
-`docker rmi $(docker images -q)`
+The Lumen framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
