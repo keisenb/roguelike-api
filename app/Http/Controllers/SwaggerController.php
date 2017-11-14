@@ -7,8 +7,8 @@ use App\Armor;
 
 /**
  * @SWG\Swagger(
- *     schemes={"http","https"},
- *     host="104.236.217.199",
+ *     schemes={"https"},
+ *     host="rogueapi.keisenb.io",
  *     basePath="/api",
  *     @SWG\Info(
  *         version="1.0.0",
@@ -41,6 +41,48 @@ use App\Armor;
  *              )
  *          }
  *      ),
+
+ *       @SWG\Definition(
+ *          definition="CharacterClass",
+ *          type="object",
+ *          allOf={
+ *              @SWG\Schema(
+ *                  @SWG\Property(property="id", type="integer"),
+ *                  @SWG\Property(property="name", type="string"),
+ *                  @SWG\Property(property="starting_health", type="integer"),
+ *                  @SWG\Property(property="starting_attack_bonus", type="integer"),
+ *                  @SWG\Property(property="starting_damage_bonus", type="integer"),
+ *                  @SWG\Property(property="starting_defense_bonus", type="integer"),
+ *                  @SWG\Property(property="starting_armor", type="integer"),
+ *                  @SWG\Property(property="starting_weapon", type="integer"),
+ *                  @SWG\Property(property="options", type="string")
+ *              )
+ *          }
+ *      ),
+ *
+ *
+ *       @SWG\Definition(
+ *          definition="Weapon",
+ *          type="object",
+ *          allOf={
+ *              @SWG\Schema(
+ *                  @SWG\Property(property="id", type="integer"),
+ *                  @SWG\Property(property="name", type="string"),
+ *                  @SWG\Property(property="attack_type", type="integer"),
+ *                  @SWG\Property(property="max_damage", type="integer"),
+ *                  @SWG\Property(property="min_damage", type="integer"),
+ *                  @SWG\Property(property="damage_type", type="integer"),
+ *                  @SWG\Property(property="range", type="integer"),
+ *                  @SWG\Property(property="hit_bonus", type="integer"),
+ *                  @SWG\Property(property="attack_effect", type="string"),
+ *                  @SWG\Property(property="properties", type="string"),
+ *                  @SWG\Property(property="properties_short", type="string"),
+ *                  @SWG\Property(property="sprite_id", type="integer")
+ *              )
+ *          }
+ *      ),
+ *
+ *
  *  )
  */
 class SwaggerController extends BaseController

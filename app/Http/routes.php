@@ -28,5 +28,12 @@ $app->group(['prefix' => 'api', 'namespace' => 'App\Http\Controllers'], function
     $app->get('/armors', 'ArmorController@GetArmors');
     $app->get('/armors/{id}', 'ArmorController@GetArmorById');
 
-    //todo
+    //character classes
+    $app->get('/classes', 'CharacterClassController@GetClasses');
+    $app->get('/classes/{id}', 'CharacterClassController@GetClassById');
+
+    //weapons
+    $app->get('/weapons', 'WeaponController@GetWeapons');
+    $app->get('/weapons/{id}', 'WeaponController@GetWeaponById');
+
 });
