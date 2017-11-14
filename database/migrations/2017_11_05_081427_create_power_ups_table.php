@@ -16,6 +16,7 @@ class CreatePowerUpsTable extends Migration
         Schema::create('power_ups', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('flavor_text');
         });
     }
 
