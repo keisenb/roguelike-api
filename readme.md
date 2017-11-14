@@ -5,22 +5,22 @@
 
 
  After you clone the repository install dependencies.
-+ `composer install`
+> `composer install`
 
 Copy the example env file
-+ `cp .env.example .env`
+> `cp .env.example .env`
 
 Give permissions to env file
-+  `chmod 777 .env`
+>  `chmod 777 .env`
 
 generate a random string for app key and add it to the APP_KEY property in env (length of 32)
 
 Change permissions for storage and bootstrap folders
-+ `chmod -R 777 bootstrap`
-+ `chmod -R 777 storage`
+> `chmod -R 777 bootstrap`
+> `chmod -R 777 storage`
 
 Run the migrations and seed the database
-+ `php artisan migrate --seed`
+> `php artisan migrate --seed`
 
 ---
 ### Swagger Documentation
