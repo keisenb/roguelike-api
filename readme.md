@@ -23,6 +23,11 @@ Change permissions for storage and bootstrap folders
 Run the migrations and seed the database
 > `php artisan migrate --seed`
 
+Generate a JWT Secret key
+> `php artisan jwt:secret`
+
+
+
 ---
 ### Swagger Documentation
 When writing API Endpoints please add Swagger documentation to the endpoints to
