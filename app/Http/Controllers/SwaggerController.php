@@ -83,6 +83,19 @@ use App\Armor;
  *      ),
  *
  *
+ *
+ *
+ *       @SWG\Definition(
+ *          definition="LoginResponse",
+ *          type="object",
+ *          allOf={
+ *              @SWG\Schema(
+ *                  @SWG\Property(property="token", type="string"),
+ *              )
+ *          }
+ *      ),
+ *
+ *
  *  )
  */
 class SwaggerController extends BaseController

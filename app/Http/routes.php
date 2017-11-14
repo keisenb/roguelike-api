@@ -21,7 +21,7 @@ $app->get('/', function () use ($app) {
 $app->group(['prefix' => 'api', 'namespace' => 'App\Http\Controllers'], function () use ($app) {
 
     //auth
-    $app->post('/auth/login', 'AuthController@postLogin');
+    $app->post('/login', 'AuthController@login');
 
     //powerups
     $app->get('/powerups', 'PowerUpController@GetPowerUps');
@@ -42,11 +42,16 @@ $app->group(['prefix' => 'api', 'namespace' => 'App\Http\Controllers'], function
 
 });
 
-$app->group(['middleware' => 'jwt.auth:api'], function($app)
+//authenticated endpoints
+$app->group(['middleware' => 'jwt.auth:api', 'prefix' => 'api', 'namespace' => 'App\Http\Controllers'], function() use ($app)
 {
+    //test
     $app->get('/test', function() {
         return response()->json([
             'message' => 'Hello World!',
         ]);
     });
+
+    //logout
+    $app->get('/logout', 'AuthController@logout');
 });
