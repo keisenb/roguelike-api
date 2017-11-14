@@ -52,6 +52,9 @@ $app->group(['middleware' => 'jwt.auth:api', 'prefix' => 'api', 'namespace' => '
         ]);
     });
 
+    //User
+    $app->get('/user', 'UserController@GetUser');
+
     //logout
     $app->get('/logout', 'AuthController@logout');
 });
