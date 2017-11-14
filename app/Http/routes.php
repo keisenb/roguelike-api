@@ -20,6 +20,9 @@ $app->get('/', function () use ($app) {
 /* Adds the /api prefix to the routes inside of this function*/
 $app->group(['prefix' => 'api', 'namespace' => 'App\Http\Controllers'], function () use ($app) {
 
+    //auth
+    $app->post('/auth/login', 'AuthController@postLogin');
+
     //powerups
     $app->get('/powerups', 'PowerUpController@GetPowerUps');
     $app->get('/powerups/{id}', 'PowerUpController@GetPowerUp');
@@ -36,4 +39,14 @@ $app->group(['prefix' => 'api', 'namespace' => 'App\Http\Controllers'], function
     $app->get('/weapons', 'WeaponController@GetWeapons');
     $app->get('/weapons/{id}', 'WeaponController@GetWeaponById');
 
+
+});
+
+$app->group(['middleware' => 'jwt.auth:api'], function($app)
+{
+    $app->get('/test', function() {
+        return response()->json([
+            'message' => 'Hello World!',
+        ]);
+    });
 });

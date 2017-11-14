@@ -66,9 +66,9 @@ $app->configure('swagger-lume');
 //     // Laravel\Lumen\Http\Middleware\VerifyCsrfToken::class,
 // ]);
 
-// $app->routeMiddleware([
-
-// ]);
+   $app->routeMiddleware([
+       'auth' => App\Http\Middleware\Authenticate::class
+   ]);
 
 /*
 |--------------------------------------------------------------------------
