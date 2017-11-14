@@ -13,9 +13,9 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        $this->command->info('Creating 1000 sample users...');
+        $this->command->info('Creating 100 sample users...');
         $faker = Faker::create();
-        foreach (range(1,1000) as $index) {
+        foreach (range(1,100) as $index) {
             $user = new User;
             $user->email = $faker->unique()->email;
             $user->display_name = $faker->userName;
