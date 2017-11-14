@@ -20,6 +20,11 @@ class CreateCharacterClassTable extends Migration
             $table->integer('starting_attack_bonus');
             $table->integer('starting_damage_bonus');
             $table->integer('starting_defense_bonus');
+            $table->unsignedInteger('starting_weapon');
+            $table->foreign('starting_weapon')->references('id')->on('weapons');
+            $table->unsignedInteger('starting_armor');
+            $table->foreign('starting_armor')->references('id')->on('armors');
+            $table->string('options');
         });
     }
 
