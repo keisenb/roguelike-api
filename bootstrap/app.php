@@ -58,16 +58,12 @@ $app->configure('swagger-lume');
 |
 */
 
-// $app->middleware([
-//     // Illuminate\Cookie\Middleware\EncryptCookies::class,
-//     // Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-//     // Illuminate\Session\Middleware\StartSession::class,
-//     // Illuminate\View\Middleware\ShareErrorsFromSession::class,
-//     // Laravel\Lumen\Http\Middleware\VerifyCsrfToken::class,
-// ]);
+    $app->middleware([
+        palanik\lumen\Middleware\LumenCors::class,
+    ]);
 
    $app->routeMiddleware([
-       'auth' => App\Http\Middleware\Authenticate::class
+       'auth' => App\Http\Middleware\Authenticate::class,
    ]);
 
 /*
@@ -82,7 +78,6 @@ $app->configure('swagger-lume');
 */
 
 $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\EventServiceProvider::class);
 
 $app->register(\SwaggerLume\ServiceProvider::class);
 

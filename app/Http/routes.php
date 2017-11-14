@@ -43,7 +43,7 @@ $app->group(['prefix' => 'api', 'namespace' => 'App\Http\Controllers'], function
 });
 
 //authenticated endpoints
-$app->group(['middleware' => 'jwt.auth:api', 'prefix' => 'api', 'namespace' => 'App\Http\Controllers'], function() use ($app)
+$app->group(['middleware' => ['jwt.auth:api'], 'prefix' => 'api', 'namespace' => 'App\Http\Controllers'], function() use ($app)
 {
     //test
     $app->get('/test', function() {
