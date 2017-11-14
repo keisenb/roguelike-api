@@ -13,9 +13,18 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('users')->delete();
         $this->command->info('Creating 100 sample users...');
+
+        //generate 1 user to use
+        $user = new User;
+        $user->email = "test@test.com";
+        $user->display_name = "test";
+        $user->password = bcrypt('password');
+        $user->save();
+
         $faker = Faker::create();
-        foreach (range(1,100) as $index) {
+        foreach (range(1,99) as $index) {
             $user = new User;
             $user->email = $faker->unique()->email;
             $user->display_name = $faker->userName;
