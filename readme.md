@@ -17,6 +17,7 @@ generate a random string for app key and add it to the APP_KEY property in env (
 
 Change permissions for storage and bootstrap folders
 > `chmod -R 777 bootstrap`
+
 > `chmod -R 777 storage`
 
 Run the migrations and seed the database
