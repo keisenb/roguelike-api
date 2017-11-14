@@ -81,10 +81,6 @@ use App\Armor;
  *              )
  *          }
  *      ),
- *
- *
- *
- *
  *       @SWG\Definition(
  *          definition="LoginResponse",
  *          type="object",
@@ -95,6 +91,19 @@ use App\Armor;
  *          }
  *      ),
  *
+ *       @SWG\Definition(
+ *          definition="User",
+ *          type="object",
+ *          allOf={
+ *              @SWG\Schema(
+ *                  @SWG\Property(property="id", type="integer"),
+ *                  @SWG\Property(property="email", type="string"),
+ *                  @SWG\Property(property="display_name", type="string"),
+ *                  @SWG\Property(property="created_at", type="string"),
+ *                  @SWG\Property(property="updated_at", type="string"),
+ *              )
+ *          }
+*        ),
  *
  *  )
  */

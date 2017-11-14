@@ -300,6 +300,36 @@
                 }
             }
         },
+        "/user": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Returns authenticated user",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A user object",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/User"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "not authenticated."
+                    }
+                }
+            }
+        },
         "/weapons": {
             "get": {
                 "tags": [
@@ -478,6 +508,30 @@
                 {
                     "properties": {
                         "token": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "User": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "email": {
+                            "type": "string"
+                        },
+                        "display_name": {
+                            "type": "string"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        },
+                        "updated_at": {
                             "type": "string"
                         }
                     }
