@@ -1,7 +1,29 @@
 # Roguelike API
 
+---
+### Installation
 
-## Swagger Documentation
+
+> After you clone the repository install dependencies.
++ `composer install`
+
+> Copy the example env file
++ `cp .env.example .env`
+
+> Give permissions to env file
++  `chmod 777 .env`
+
+> generate a random string for app key and add it to the APP_KEY property in env (length of 32)
+
+> Change permissions for storage and bootstrap folders
++ `chmod -R 777 bootstrap`
++ `chmod -R 777 storage`
+
+> Run the migrations and seed the database
++ `php artisan migrate --seed`
+
+---
+### Swagger Documentation
 When writing API Endpoints please add Swagger documentation to the endpoints to
 specify required parameters and expected responses.
 You can find more information about Swagger [here](https://github.com/zircote/swagger-php/blob/master/docs/Getting-started.md).
@@ -10,23 +32,13 @@ Once you have added documentation to a controller endpoint you can regenerate
 the `/api/documentation` view with the following command:
 + `php artisan swagger-lume:generate`
 
-## Lumen PHP Framework
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+---
+### Lumen PHP Framework
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
-
-## Official Documentation
+#### Official Documentation
 
 Documentation for the framework can be found on the [Lumen website](http://lumen.laravel.com/docs).
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-### License
+#### License
 
 The Lumen framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
