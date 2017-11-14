@@ -76,6 +76,11 @@ class AuthController extends Controller
      *     response=401,
      *     description="unauthorized, invalid token, missing token, expired token.",
      *     @SWG\Schema(@SWG\Property(property="message", type ="string"))
+     *   ),
+     *   @SWG\Response(
+     *     response=404,
+     *     description="User not found.",
+     *     @SWG\Schema(@SWG\Property(property="message", type ="string"))
      *   )
      * )
      */
@@ -88,12 +93,12 @@ class AuthController extends Controller
 
         try {
             if (! $token = $this->jwt->attempt($request->only('email', 'password'))) {
-                return response()->json(['user_not_found'], 404);
+                return response()->json(['message' => 'user_not_found'], 404);
             }
         } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-            return response()->json(['token_expired'], 500);
+            return response()->json(['message' => 'token_expired'], 500);
         } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-            return response()->json(['token_invalid'], 500);
+            return response()->json(['message' => 'token_invalid'], 500);
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
             return response()->json(['token_absent' => $e->getMessage()], 500);
         }
