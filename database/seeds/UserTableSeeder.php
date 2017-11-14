@@ -20,7 +20,7 @@ class UserTableSeeder extends Seeder
         $user = new User;
         $user->email = "test@test.com";
         $user->display_name = "test";
-        $user->password = bcrypt('password');
+        $user->password = app('hash')->make('password');//bcrypt('password');
         $user->save();
 
         $faker = Faker::create();
@@ -28,7 +28,7 @@ class UserTableSeeder extends Seeder
             $user = new User;
             $user->email = $faker->unique()->email;
             $user->display_name = $faker->userName;
-            $user->password = bcrypt('password');
+            $user->password = app('hash')->make('password');//bcrypt('password');
             $user->save();
         }
     }
