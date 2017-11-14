@@ -25,6 +25,7 @@ class CreateWeaponsTable extends Migration
             $table->string('attack_effect');
             $table->string('properties');
             $table->string('properties_short');
+            $table->integer('sprite_id');
         });
     }
 
