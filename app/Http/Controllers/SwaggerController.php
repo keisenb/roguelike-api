@@ -104,6 +104,41 @@ use App\Armor;
  *              )
  *          }
 *        ),
+ *       @SWG\Definition(
+ *          definition="CharacterHistory",
+ *          type="object",
+ *          allOf={
+ *              @SWG\Schema(
+ *                  @SWG\Property(property="id", type="integer"),
+ *                  @SWG\Property(property="user_id", type="integer"),
+ *                  @SWG\Property(property="character_id", type="integer"),
+ *                  @SWG\Property(property="score", type="integer"),
+ *                  @SWG\Property(property="level_id", type="integer"),
+ *                  @SWG\Property(property="created_at", type="string"),
+ *                  @SWG\Property(property="updated_at", type="string"),
+ *                  @SWG\Property(property="character", type="object",
+ *                      @SWG\Property(property="id", type="integer"),
+ *                      @SWG\Property(property="name", type="string"),
+ *                      @SWG\Property(property="starting_health", type="integer"),
+ *                      @SWG\Property(property="starting_attack_bonus", type="integer"),
+ *                      @SWG\Property(property="starting_damage_bonus", type="integer"),
+ *                      @SWG\Property(property="starting_defense_bonus", type="integer"),
+ *                      @SWG\Property(property="starting_weapon", type="integer"),
+ *                      @SWG\Property(property="starting_armor", type="integer"),
+ *                      @SWG\Property(property="options", type="string"),
+ *                  ),
+ *                  @SWG\Property(property="level", type="object",
+ *                      @SWG\Property(property="id", type="integer"),
+ *                      @SWG\Property(property="user_id", type="integer"),
+ *                      @SWG\Property(property="seed", type="string"),
+ *                      @SWG\Property(property="created_at", type="string"),
+ *                      @SWG\Property(property="updated_at", type="string"),
+ *                  )
+ * 
+ * 
+ *              )
+ *          }
+*        ),
  *
  *  )
  */
