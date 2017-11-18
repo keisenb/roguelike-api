@@ -14,6 +14,12 @@ class CharacterHistoryController extends BaseController
      *   path="/characters/history",
      *   tags={"Character History"},
      *   summary="lists all character histories",
+     *   @SWG\Parameter(
+     *       name="token",
+     * 		 in="header",
+     * 		 required=true,
+     *       type="string"
+     *	 ), 
      *   @SWG\Response(
      *     response=200,
      *     description="A list with character histories",
@@ -45,6 +51,12 @@ class CharacterHistoryController extends BaseController
      * 			type="integer",
      * 			description="UUID",
      * 		),
+     *   @SWG\Parameter(
+     *       name="token",
+     * 		 in="header",
+     * 		 required=true,
+     *       type="string"
+     *	 ),
      *   @SWG\Response(
      *     response=200,
      *     description="A character history object",
@@ -56,7 +68,7 @@ class CharacterHistoryController extends BaseController
      *   )
      * )
      */
-    public function GetCharacterHistory($id) {
+    public function GetCharacterHistoryById($id) {
         return CharacterHistory::with('character', 'level')->findOrFail($id);
     }
 }
