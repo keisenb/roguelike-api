@@ -250,6 +250,56 @@
                 }
             }
         },
+        "/characters/history": {
+            "get": {
+                "tags": [
+                    "Character History"
+                ],
+                "summary": "lists all character histories",
+                "responses": {
+                    "200": {
+                        "description": "A list with character histories",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/CharacterHistory"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "no character histories in table, or an error."
+                    }
+                }
+            }
+        },
+        "/characters/history/{id}": {
+            "get": {
+                "tags": [
+                    "Character History"
+                ],
+                "summary": "list character history by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UUID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A character history object",
+                        "schema": {
+                            "$ref": "#/definitions/CharacterHistory"
+                        }
+                    },
+                    "404": {
+                        "description": "no character history w/ id found in table, or an error."
+                    }
+                }
+            }
+        },
         "/powerups": {
             "get": {
                 "tags": [
@@ -533,6 +583,88 @@
                         },
                         "updated_at": {
                             "type": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "CharacterHistory": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "user_id": {
+                            "type": "integer"
+                        },
+                        "character_id": {
+                            "type": "integer"
+                        },
+                        "score": {
+                            "type": "integer"
+                        },
+                        "level_id": {
+                            "type": "integer"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        },
+                        "updated_at": {
+                            "type": "string"
+                        },
+                        "character": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "starting_health": {
+                                    "type": "integer"
+                                },
+                                "starting_attack_bonus": {
+                                    "type": "integer"
+                                },
+                                "starting_damage_bonus": {
+                                    "type": "integer"
+                                },
+                                "starting_defense_bonus": {
+                                    "type": "integer"
+                                },
+                                "starting_weapon": {
+                                    "type": "integer"
+                                },
+                                "starting_armor": {
+                                    "type": "integer"
+                                },
+                                "options": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "level": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "user_id": {
+                                    "type": "integer"
+                                },
+                                "seed": {
+                                    "type": "string"
+                                },
+                                "created_at": {
+                                    "type": "string"
+                                },
+                                "updated_at": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
                         }
                     }
                 }

@@ -15,7 +15,7 @@ class AddKilledByToCharacterTable extends Migration
     {
         //
         Schema::table('characters', function(Blueprint $table){
-            $table->integer('killed_by')->unsigned();
+            $table->integer('killed_by')->unsigned()->nullable();
             $table->foreign('killed_by')->references('id')->on('characters');
 
         });

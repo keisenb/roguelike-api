@@ -57,4 +57,8 @@ $app->group(['middleware' => ['jwt.auth:api'], 'prefix' => 'api', 'namespace' =>
 
     //logout
     $app->get('/logout', 'AuthController@logout');
+
+    //character history
+    $app->get('characters/history', 'CharacterHistoryController@GetCharacterHistories');
+    $app->get('characters/history/{id}', 'CharacterHistoryController@GetCharacterHistory');
 });
