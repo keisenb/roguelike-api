@@ -148,10 +148,17 @@ use App\Armor;
  *                  @SWG\Property(property="user_id", type="string"),
  *                  @SWG\Property(property="seed", type="string"),
  *                  @SWG\Property(property="created_at", type="string"),
- *                  @SWG\Property(property="updated_at", type="string")
- *              )
+ *                  @SWG\Property(property="updated_at", type="string"),
+ *                  @SWG\Property(property="user", type="object",
+ *                      @SWG\Property(property="id", type="integer"),
+ *                      @SWG\Property(property="email", type="string"),
+ *                      @SWG\Property(property="display_name", type="string"),
+ *                      @SWG\Property(property="created_at", type="string"),
+ *                      @SWG\Property(property="updated_at", type="string"),
+
+ *                  ), *              )
  *          }
- *      ), *
+ *      ),
  *  )
  */
 class SwaggerController extends BaseController

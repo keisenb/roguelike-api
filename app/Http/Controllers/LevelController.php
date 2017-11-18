@@ -36,7 +36,7 @@ class LevelController extends BaseController
      * )
      */
     public function GetLevels() {
-        $levels = Level::get();
+        $levels = Level::with('user')->get();
         return $levels;
     }
 

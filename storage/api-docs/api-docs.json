@@ -767,6 +767,26 @@
                         },
                         "updated_at": {
                             "type": "string"
+                        },
+                        "user": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "display_name": {
+                                    "type": "string"
+                                },
+                                "created_at": {
+                                    "type": "string"
+                                },
+                                "updated_at": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
                         }
                     }
                 }
