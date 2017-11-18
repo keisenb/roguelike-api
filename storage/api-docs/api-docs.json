@@ -256,6 +256,14 @@
                     "Character History"
                 ],
                 "summary": "lists all character histories",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "A list with character histories",
@@ -285,6 +293,12 @@
                         "description": "UUID",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -296,6 +310,70 @@
                     },
                     "404": {
                         "description": "no character history w/ id found in table, or an error."
+                    }
+                }
+            }
+        },
+        "/levels": {
+            "get": {
+                "tags": [
+                    "Levels"
+                ],
+                "summary": "lists all levels",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list with levels",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Level"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "no levels in table, or an error."
+                    }
+                }
+            }
+        },
+        "/levels/{id}": {
+            "get": {
+                "tags": [
+                    "Levels"
+                ],
+                "summary": "returns a level by id",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UUID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A level object",
+                        "schema": {
+                            "$ref": "#/definitions/Level"
+                        }
+                    },
+                    "404": {
+                        "description": "no level w/ id found in table, or an error."
                     }
                 }
             }
@@ -665,6 +743,30 @@
                                 }
                             },
                             "type": "object"
+                        }
+                    }
+                }
+            ]
+        },
+        "Level": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "user_id": {
+                            "type": "string"
+                        },
+                        "seed": {
+                            "type": "string"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        },
+                        "updated_at": {
+                            "type": "string"
                         }
                     }
                 }

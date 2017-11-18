@@ -139,7 +139,19 @@ use App\Armor;
  *              )
  *          }
 *        ),
- *
+ *      @SWG\Definition(
+ *          definition="Level",
+ *          type="object",
+ *          allOf={
+ *              @SWG\Schema(
+ *                  @SWG\Property(property="id", type="integer"),
+ *                  @SWG\Property(property="user_id", type="string"),
+ *                  @SWG\Property(property="seed", type="string"),
+ *                  @SWG\Property(property="created_at", type="string"),
+ *                  @SWG\Property(property="updated_at", type="string")
+ *              )
+ *          }
+ *      ), *
  *  )
  */
 class SwaggerController extends BaseController
