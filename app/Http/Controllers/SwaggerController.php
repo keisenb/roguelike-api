@@ -36,8 +36,8 @@ use App\Armor;
  *                  @SWG\Property(property="id", type="integer"),
  *                  @SWG\Property(property="name", type="string"),
  *                  @SWG\Property(property="defense_value", type="integer"),
- *                  @SWG\Property(property="strong_type", type="integer"),
- *                  @SWG\Property(property="weak_type", type="integer")
+ *                  @SWG\Property(property="strong_type", type="string"),
+ *                  @SWG\Property(property="weak_type", type="string")
  *              )
  *          }
  *      ),
@@ -134,8 +134,8 @@ use App\Armor;
  *                      @SWG\Property(property="created_at", type="string"),
  *                      @SWG\Property(property="updated_at", type="string"),
  *                  )
- * 
- * 
+ *
+ *
  *              )
  *          }
 *        ),

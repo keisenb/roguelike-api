@@ -540,10 +540,10 @@
                             "type": "integer"
                         },
                         "strong_type": {
-                            "type": "integer"
+                            "type": "string"
                         },
                         "weak_type": {
-                            "type": "integer"
+                            "type": "string"
                         }
                     }
                 }
