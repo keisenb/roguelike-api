@@ -16,7 +16,7 @@ class CreateArmorsTable extends Migration
         Schema::create('armors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('defense_value');
+            $table->integer('defense_value');
             $table->string('strong_type');
             $table->string('weak_type');
         });
