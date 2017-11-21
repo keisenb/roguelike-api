@@ -20,10 +20,11 @@ class CreateCharactersTable extends Migration
             $table->integer('attack_bonus');
             $table->integer('damage_bonus');
             $table->integer('defense_bonus');
-            $table->unsignedInteger('weapon');
-            $table->foreign('weapon')->references('id')->on('weapons');
-            $table->unsignedInteger('armour');
-            $table->foreign('armour')->references('id')->on('armors');
+            $table->unsignedInteger('weapon_id');
+            $table->foreign('weapon_id')->references('id')->on('weapons');
+            $table->unsignedInteger('armor_id');
+            $table->foreign('armor_id')->references('id')->on('armors');
+            $table->timestamps();
         });
     }
 
