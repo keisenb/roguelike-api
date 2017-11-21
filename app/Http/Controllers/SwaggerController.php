@@ -103,7 +103,21 @@ use App\Armor;
  *                  @SWG\Property(property="updated_at", type="string"),
  *              )
  *          }
-*        ),
+ *       ),
+ *
+ *      @SWG\Definition(
+ *          definition="Message",
+ *          type="object",
+ *          allOf={
+ *              @SWG\Schema(
+ *                  @SWG\Property(property="sender_id", type="integer"),
+ *                  @SWG\Property(property="recipient_id", type="integer"),
+ *                  @SWG\Property(property="content", type="string"),
+ *                  @SWG\Property(property="created_at", type="string"),
+ *                  @SWG\Property(property="updated_at", type="string")
+ *              )
+ *          }
+ *      ),
  *
  *  )
  */

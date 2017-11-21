@@ -250,6 +250,34 @@
                 }
             }
         },
+        "/messages/{id}": {
+            "get": {
+                "tags": [
+                    "Messages"
+                ],
+                "summary": "list message by userid",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UUID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A weapon object",
+                        "schema": {
+                            "$ref": "#/definitions/Message"
+                        }
+                    },
+                    "404": {
+                        "description": "no messages by user found in table, or an error."
+                    }
+                }
+            }
+        },
         "/powerups": {
             "get": {
                 "tags": [
@@ -526,6 +554,30 @@
                             "type": "string"
                         },
                         "display_name": {
+                            "type": "string"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        },
+                        "updated_at": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "Message": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "sender_id": {
+                            "type": "integer"
+                        },
+                        "recipient_id": {
+                            "type": "integer"
+                        },
+                        "content": {
                             "type": "string"
                         },
                         "created_at": {
