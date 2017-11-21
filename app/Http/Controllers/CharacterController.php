@@ -22,6 +22,12 @@ class CharacterController extends BaseController
      * 		 required=true,
      * 		 @SWG\Schema(ref="#/definitions/PostCharacter"),
      *	 ),
+     *   @SWG\Parameter(
+     *       name="token",
+     * 		 in="header",
+     * 		 required=true,
+     *       type="string"
+     *	 ),
      *   @SWG\Response(
      *     response=200,
      *     description="The created character object.",
@@ -94,6 +100,12 @@ class CharacterController extends BaseController
      * 			type="integer",
      * 			description="UUID",
      * 		),
+     *   @SWG\Parameter(
+     *       name="token",
+     * 		 in="header",
+     * 		 required=true,
+     *       type="string"
+     *	 ),
      *   @SWG\Response(
      *     response=200,
      *     description="A character object",
@@ -120,6 +132,12 @@ class CharacterController extends BaseController
      * 		 in="body",
      * 		 required=true,
      * 		 @SWG\Schema(ref="#/definitions/UpdateCharacter"),
+     *	 ),
+     *   @SWG\Parameter(
+     *       name="token",
+     * 		 in="header",
+     * 		 required=true,
+     *       type="string"
      *	 ),
      *   @SWG\Response(
      *     response=200,

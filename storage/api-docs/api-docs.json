@@ -264,6 +264,12 @@
                         "schema": {
                             "$ref": "#/definitions/PostCharacter"
                         }
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -321,6 +327,12 @@
                         "description": "UUID",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -348,6 +360,12 @@
                         "schema": {
                             "$ref": "#/definitions/UpdateCharacter"
                         }
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -420,6 +438,68 @@
                         "description": "no character histories in table, or an error."
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Character History"
+                ],
+                "summary": "Creates a new character.",
+                "parameters": [
+                    {
+                        "name": "character_history",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PostCharacterHistory"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The created character history object.",
+                        "schema": {
+                            "$ref": "#/definitions/NewCharacterHistory"
+                        }
+                    },
+                    "401": {
+                        "description": "unauthorized, invalid token, missing token, expired token.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity, missing parameter, invalid parameter.",
+                        "schema": {
+                            "properties": {
+                                "parameter_name": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Unable to find character or level by id.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/characters/history/{id}": {
@@ -484,6 +564,51 @@
                         "description": "no levels in table, or an error."
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Levels"
+                ],
+                "summary": "Creates a new level.",
+                "parameters": [
+                    {
+                        "name": "level",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateLevel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The created character object.",
+                        "schema": {
+                            "$ref": "#/definitions/NewLevel"
+                        }
+                    },
+                    "401": {
+                        "description": "unauthorized, invalid token, missing token, expired token.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity, missing parameter, invalid parameter.",
+                        "schema": {
+                            "properties": {
+                                "parameter_name": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/levels/{id}": {
@@ -538,6 +663,68 @@
                     },
                     "404": {
                         "description": "no powerups in table, or an error."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Power Ups"
+                ],
+                "summary": "Creates a PickedUpPowerUp object.",
+                "parameters": [
+                    {
+                        "name": "PickedUpPowerUp",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PickedUpPowerUp"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The created PickedUpPowerUp object.",
+                        "schema": {
+                            "$ref": "#/definitions/CreatedPickedUpPowerUp"
+                        }
+                    },
+                    "401": {
+                        "description": "unauthorized, invalid token, missing token, expired token.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity, missing parameter, invalid parameter.",
+                        "schema": {
+                            "properties": {
+                                "parameter_name": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Unable to find character or power up by id.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -1033,6 +1220,129 @@
                         },
                         "killed_by": {
                             "type": "integer"
+                        }
+                    }
+                }
+            ]
+        },
+        "CreateLevel": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "seed": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "NewLevel": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "user_id": {
+                            "type": "integer"
+                        },
+                        "seed": {
+                            "type": "string"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        },
+                        "updated_at": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "PostCharacterHistory": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "character_id": {
+                            "type": "integer"
+                        },
+                        "level_id": {
+                            "type": "integer"
+                        },
+                        "score": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            ]
+        },
+        "NewCharacterHistory": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "user_id": {
+                            "type": "integer"
+                        },
+                        "character_id": {
+                            "type": "integer"
+                        },
+                        "score": {
+                            "type": "integer"
+                        },
+                        "level_id": {
+                            "type": "integer"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        },
+                        "updated_at": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "PickedUpPowerUp": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "character_id": {
+                            "type": "integer"
+                        },
+                        "power_up_id": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            ]
+        },
+        "CreatedPickedUpPowerUp": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "character_id": {
+                            "type": "integer"
+                        },
+                        "power_up_id": {
+                            "type": "integer"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        },
+                        "updated_at": {
+                            "type": "string"
                         }
                     }
                 }
