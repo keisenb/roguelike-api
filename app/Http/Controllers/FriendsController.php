@@ -36,13 +36,13 @@ class FriendsController extends BaseController
         
     }
 
-    public function Delete()
+    public function Delete($id)
     {
-
+        Friends->where('email2', '=', $id)->delete();
     }
 
-    public function Get()
+    public function Get($id)
     {
-
+        return Friends::findOrFail($id);
     }
 }
