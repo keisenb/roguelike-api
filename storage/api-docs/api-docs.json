@@ -484,6 +484,51 @@
                         "description": "no levels in table, or an error."
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Levels"
+                ],
+                "summary": "Creates a new level.",
+                "parameters": [
+                    {
+                        "name": "level",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateLevel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The created character object.",
+                        "schema": {
+                            "$ref": "#/definitions/NewLevel"
+                        }
+                    },
+                    "401": {
+                        "description": "unauthorized, invalid token, missing token, expired token.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity, missing parameter, invalid parameter.",
+                        "schema": {
+                            "properties": {
+                                "parameter_name": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/levels/{id}": {
@@ -1033,6 +1078,42 @@
                         },
                         "killed_by": {
                             "type": "integer"
+                        }
+                    }
+                }
+            ]
+        },
+        "CreateLevel": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "seed": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "NewLevel": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "user_id": {
+                            "type": "integer"
+                        },
+                        "seed": {
+                            "type": "string"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        },
+                        "updated_at": {
+                            "type": "string"
                         }
                     }
                 }
