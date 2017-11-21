@@ -250,6 +250,148 @@
                 }
             }
         },
+        "/characters": {
+            "post": {
+                "tags": [
+                    "Character"
+                ],
+                "summary": "Creates a new character.",
+                "parameters": [
+                    {
+                        "name": "character",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PostCharacter"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The created character object.",
+                        "schema": {
+                            "$ref": "#/definitions/Character"
+                        }
+                    },
+                    "401": {
+                        "description": "unauthorized, invalid token, missing token, expired token.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity, missing parameter, invalid parameter.",
+                        "schema": {
+                            "properties": {
+                                "parameter_name": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Unable to find armor or weapon by id.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/characters/{id}": {
+            "get": {
+                "tags": [
+                    "Character"
+                ],
+                "summary": "return character by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UUID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A character object",
+                        "schema": {
+                            "$ref": "#/definitions/Character"
+                        }
+                    },
+                    "404": {
+                        "description": "no character w/ id found in table, or an error."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Character"
+                ],
+                "summary": "Updates an existing character, all parameters are optional. Pass only what's needed to be updated.",
+                "parameters": [
+                    {
+                        "name": "character",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateCharacter"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The updated character object.",
+                        "schema": {
+                            "$ref": "#/definitions/Character"
+                        }
+                    },
+                    "401": {
+                        "description": "unauthorized, invalid token, missing token, expired token.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity, missing parameter, invalid parameter.",
+                        "schema": {
+                            "properties": {
+                                "parameter_name": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Unable to find character for killed_by parameter.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/characters/history": {
             "get": {
                 "tags": [
@@ -787,6 +929,110 @@
                                 }
                             },
                             "type": "object"
+                        }
+                    }
+                }
+            ]
+        },
+        "PostCharacter": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "health": {
+                            "type": "integer"
+                        },
+                        "attack_bonus": {
+                            "type": "integer"
+                        },
+                        "damage_bonus": {
+                            "type": "integer"
+                        },
+                        "defense_bonus": {
+                            "type": "integer"
+                        },
+                        "weapon_id": {
+                            "properties": {
+                                "armor_id": {
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "integer"
+                        }
+                    }
+                }
+            ]
+        },
+        "Character": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "health": {
+                            "type": "integer"
+                        },
+                        "attack_bonus": {
+                            "type": "integer"
+                        },
+                        "damage_bonus": {
+                            "type": "integer"
+                        },
+                        "defense_bonus": {
+                            "type": "integer"
+                        },
+                        "weapon_id": {
+                            "type": "integer"
+                        },
+                        "armor_id": {
+                            "type": "integer"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        },
+                        "updated_at": {
+                            "type": "string"
+                        },
+                        "killed_by": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            ]
+        },
+        "UpdateCharacter": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "health": {
+                            "type": "integer"
+                        },
+                        "attack_bonus": {
+                            "type": "integer"
+                        },
+                        "damage_bonus": {
+                            "type": "integer"
+                        },
+                        "defense_bonus": {
+                            "type": "integer"
+                        },
+                        "weapon_id": {
+                            "type": "integer"
+                        },
+                        "armor_id": {
+                            "type": "integer"
+                        },
+                        "killed_by": {
+                            "type": "integer"
                         }
                     }
                 }
