@@ -14,10 +14,12 @@ class CreateCharacterPickedUpPowerupTable extends Migration
     public function up()
     {
         Schema::create('character_picked_up_powerup', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('character_id');
             $table->foreign('character_id')->references('id')->on('characters');
             $table->unsignedInteger('power_up_id');
             $table->foreign('power_up_id')->references('id')->on('power_ups');
+            $table->timestamps();
         });
     }
 

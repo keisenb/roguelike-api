@@ -231,6 +231,55 @@ use App\Armor;
  *              )
  *          }
  *      ),
+ *      @SWG\Definition(
+ *          definition="PostCharacterHistory",
+ *          type="object",
+ *          allOf={
+ *              @SWG\Schema(
+ *                  @SWG\Property(property="character_id", type="integer"),
+ *                  @SWG\Property(property="level_id", type="integer"),
+ *                  @SWG\Property(property="score", type="integer")
+ *              )
+ *          }
+ *      ),
+ *      @SWG\Definition(
+ *          definition="NewCharacterHistory",
+ *          type="object",
+ *          allOf={
+ *              @SWG\Schema(
+ *                  @SWG\Property(property="id", type="integer"),
+ *                  @SWG\Property(property="user_id", type="integer"),
+ *                  @SWG\Property(property="character_id", type="integer"),
+ *                  @SWG\Property(property="score", type="integer"),
+ *                  @SWG\Property(property="level_id", type="integer"),
+ *                  @SWG\Property(property="created_at", type="string"),
+ *                  @SWG\Property(property="updated_at", type="string"),
+ *              )
+ *          }
+ *      ),
+ *      @SWG\Definition(
+ *          definition="PickedUpPowerUp",
+ *          type="object",
+ *          allOf={
+ *              @SWG\Schema(
+ *                  @SWG\Property(property="character_id", type="integer"),
+ *                  @SWG\Property(property="power_up_id", type="integer")
+ *              )
+ *          }
+ *      ),
+ *      @SWG\Definition(
+ *          definition="CreatedPickedUpPowerUp",
+ *          type="object",
+ *          allOf={
+ *              @SWG\Schema(
+ *                  @SWG\Property(property="id", type="integer"),
+ *                  @SWG\Property(property="character_id", type="integer"),
+ *                  @SWG\Property(property="power_up_id", type="integer"),
+ *                  @SWG\Property(property="created_at", type="string"),
+ *                  @SWG\Property(property="updated_at", type="string"),
+ *              )
+ *          }
+ *      ),
  *  )
  */
 class SwaggerController extends BaseController
