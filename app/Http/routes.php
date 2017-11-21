@@ -76,4 +76,8 @@ $app->group(['middleware' => ['jwt.auth:api'], 'prefix' => 'api', 'namespace' =>
     //powerups
     $app->post('/powerups', 'PowerUpController@PickedUpPowerUp');
 
+    //friends
+    $app->get('/friends/{id}', 'FriendsController@Get');
+    $app->put('/friends/{id}', 'FriendsController@Delete');
+    $app->post('/friends/{id}', 'FriendsController@Add');
 });

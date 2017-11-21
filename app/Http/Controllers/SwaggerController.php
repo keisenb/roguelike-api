@@ -280,7 +280,9 @@ use App\Armor;
  *              )
  *          }
  *      ),
- *  )
+ *      @SWG\Definition(
+ *          
+ *      )
  */
 class SwaggerController extends BaseController
 {
