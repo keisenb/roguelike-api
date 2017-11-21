@@ -194,6 +194,21 @@ use App\Armor;
  *              )
  *          }
  *      ),
+ *      @SWG\Definition(
+ *          definition="UpdateCharacter",
+ *          type="object",
+ *          allOf={
+ *              @SWG\Schema(
+ *                  @SWG\Property(property="health", type="integer"),
+ *                  @SWG\Property(property="attack_bonus", type="integer"),
+ *                  @SWG\Property(property="damage_bonus", type="integer"),
+ *                  @SWG\Property(property="defense_bonus", type="integer"),
+ *                  @SWG\Property(property="weapon_id", type="integer"),
+ *                  @SWG\Property(property="armor_id", type="integer"),
+ *                  @SWG\Property(property="killed_by", type="integer"),
+ *              )
+ *          }
+ *      ),
  *  )
  */
 class SwaggerController extends BaseController

@@ -67,8 +67,8 @@ $app->group(['middleware' => ['jwt.auth:api'], 'prefix' => 'api', 'namespace' =>
     $app->get('/levels/{id}', 'LevelController@GetLevelById');
 
     //characters
-    $app->post('characters/create', 'CharacterController@CreateCharacter');
+    $app->post('characters', 'CharacterController@CreateCharacter');
     $app->get('characters/{id}', 'CharacterController@GetCharacterById');
-    $app->post('characters/update', 'CharacterController@UpdateCharacter');
+    $app->put('characters/{id}', 'CharacterController@UpdateCharacter');
 
 });

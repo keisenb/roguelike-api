@@ -19,4 +19,8 @@ class Character extends Model
 	public function armor() {
 		return $this->belongsTo('App\Armor', 'armor_id');
 	}
+
+	public function killed() {
+		return $this->belongsTo('App\Character', 'killed_by');
+	}
 }

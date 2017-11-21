@@ -13,7 +13,7 @@ class CharacterController extends BaseController
 
     /**
      * @SWG\Post(
-     *   path="/characters/create",
+     *   path="/characters",
      *   tags={"Character"},
      *   summary="Creates a new character.",
      *   @SWG\Parameter(
@@ -109,8 +109,82 @@ class CharacterController extends BaseController
         return Character::findOrFail($id);
     }
 
-    public function UpdateCharacter(Request $request) {
-        return $request->all();
+
+    /**
+     * @SWG\Put(
+     *   path="/characters/{id}",
+     *   tags={"Character"},
+     *   summary="Updates an existing character, all parameters are optional. Pass only what's needed to be updated.",
+     *   @SWG\Parameter(
+     *       name="character",
+     * 		 in="body",
+     * 		 required=true,
+     * 		 @SWG\Schema(ref="#/definitions/UpdateCharacter"),
+     *	 ),
+     *   @SWG\Response(
+     *     response=200,
+     *     description="The updated character object.",
+     *     @SWG\Schema(ref="#/definitions/Character")
+     *   ),
+     *   @SWG\Response(
+     *     response=401,
+     *     description="unauthorized, invalid token, missing token, expired token.",
+     *     @SWG\Schema(@SWG\Property(property="message", type ="string"))
+     *   ),
+     *   @SWG\Response(
+     *     response=422,
+     *     description="Unprocessable Entity, missing parameter, invalid parameter.",
+     *     @SWG\Schema(@SWG\Property(property="parameter_name", type ="string", default="error message"))
+     *   ),
+     *   @SWG\Response(
+     *     response=404,
+     *     description="Unable to find character for killed_by parameter.",
+     *     @SWG\Schema(@SWG\Property(property="message", type ="string", default="error message"))
+     *   )
+     * )
+     */
+    public function UpdateCharacter(Request $request, $id) {
+        $character = Character::findOrFail($id);
+
+        $this->validate($request, [
+            'health' => 'integer|max:99999999999',
+            'attack_bonus' => 'integer|max:99999999999',
+            'damage_bonus' => 'integer|max:99999999999',
+            'defense_bonus' => 'integer|max:99999999999',
+            'weapon_id' => 'integer|max:99999999999',
+            'armor_id' => 'integer|max:99999999999',
+            'killed_by' => 'integer|max:99999999999'
+        ]);
+
+        if ($request->has('health')) {
+            $character->health = $request->health;
+        }
+        if ($request->has('attack_bonus')) {
+            $character->attack_bonus = $request->attack_bonus;
+        }
+        if ($request->has('damage_bonus')) {
+            $character->damage_bonus = $request->damage_bonus;
+        }
+        if ($request->has('defense_bonus')) {
+            $character->defense_bonus = $request->defense_bonus;
+        }
+        if ($request->has('weapon_id')) {
+            $character->weapon_id = $request->weapon_id;
+        }
+        if ($request->has('armor_id')) {
+            $character->armor_id = $request->armor_id;
+        }
+        if ($request->has('killed_by')) {
+            $killed_by = Character::where('id', $request->killed_by)->first();
+            if($killed_by == NULL) {
+                $message = "Character not found with killed_by id: " . $request->killed_by;
+                return response()->json(['message' => $message ], 404);
+            }
+            $character->killed()->associate($request->killed_by);
+        }
+
+        $character->save();
+        return Character::findOrFail($id);
     }
 
 }
