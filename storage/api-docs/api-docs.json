@@ -301,7 +301,7 @@
                         }
                     },
                     "404": {
-                        "description": "Unable to find armor or weapon by id.",
+                        "description": "Unable to find armor, class, or weapon by id.",
                         "schema": {
                             "properties": {
                                 "message": {
@@ -1142,11 +1142,12 @@
                             "type": "integer"
                         },
                         "weapon_id": {
-                            "properties": {
-                                "armor_id": {
-                                    "type": "integer"
-                                }
-                            },
+                            "type": "integer"
+                        },
+                        "armor_id": {
+                            "type": "integer"
+                        },
+                        "class_id": {
                             "type": "integer"
                         }
                     }
@@ -1180,6 +1181,9 @@
                             "type": "integer"
                         },
                         "armor_id": {
+                            "type": "integer"
+                        },
+                        "class_id": {
                             "type": "integer"
                         },
                         "created_at": {

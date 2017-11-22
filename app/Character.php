@@ -20,6 +20,10 @@ class Character extends Model
 		return $this->belongsTo('App\Armor', 'armor_id');
 	}
 
+	public function class() {
+		return $this->belongsTo('App\CharacterClass', 'class_id');
+	}
+
 	public function killed() {
 		return $this->belongsTo('App\Character', 'killed_by');
 	}

@@ -24,6 +24,8 @@ class CreateCharactersTable extends Migration
             $table->foreign('weapon_id')->references('id')->on('weapons');
             $table->unsignedInteger('armor_id');
             $table->foreign('armor_id')->references('id')->on('armors');
+            $table->unsignedInteger('class_id');
+            $table->foreign('class_id')->references('id')->on('character_class');
             $table->timestamps();
         });
     }
