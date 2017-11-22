@@ -1029,26 +1029,64 @@
                                 "name": {
                                     "type": "string"
                                 },
-                                "starting_health": {
+                                "attack_bonus": {
                                     "type": "integer"
                                 },
-                                "starting_attack_bonus": {
+                                "damage_bonus": {
                                     "type": "integer"
                                 },
-                                "starting_damage_bonus": {
+                                "defense_bonus": {
                                     "type": "integer"
                                 },
-                                "starting_defense_bonus": {
+                                "weapon_id": {
                                     "type": "integer"
                                 },
-                                "starting_weapon": {
+                                "armor_id": {
                                     "type": "integer"
                                 },
-                                "starting_armor": {
+                                "class_id": {
                                     "type": "integer"
                                 },
-                                "options": {
+                                "created_at": {
                                     "type": "string"
+                                },
+                                "updated_at": {
+                                    "type": "string"
+                                },
+                                "killed_by": {
+                                    "type": "integer"
+                                },
+                                "class": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "starting_health": {
+                                            "type": "integer"
+                                        },
+                                        "starting_attack_bonus": {
+                                            "type": "integer"
+                                        },
+                                        "starting_damage_bonus": {
+                                            "type": "integer"
+                                        },
+                                        "starting_defense_bonus": {
+                                            "type": "integer"
+                                        },
+                                        "starting_weapon": {
+                                            "type": "integer"
+                                        },
+                                        "starting_armor": {
+                                            "type": "integer"
+                                        },
+                                        "options": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             },
                             "type": "object"

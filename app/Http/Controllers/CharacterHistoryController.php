@@ -39,7 +39,7 @@ class CharacterHistoryController extends BaseController
      * )
      */
     public function GetCharacterHistories() {
-        $histories = CharacterHistory::with(['character', 'level'])->get();
+        $histories = CharacterHistory::with(['character.class', 'level'])->get();
         return $histories;
     }
 
@@ -73,7 +73,7 @@ class CharacterHistoryController extends BaseController
      * )
      */
     public function GetCharacterHistoryById($id) {
-        return CharacterHistory::with('character', 'level')->findOrFail($id);
+        return CharacterHistory::with('character.class', 'level')->findOrFail($id);
     }
 
 
