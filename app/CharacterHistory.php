@@ -17,7 +17,7 @@ class CharacterHistory extends Model
 	}
 
 	public function character() {
-		return $this->belongsTo('App\CharacterClass', 'character_id');
+		return $this->belongsTo('App\Character', 'character_id');
 	}
 
 	public function level() {
