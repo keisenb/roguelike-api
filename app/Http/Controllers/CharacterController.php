@@ -7,6 +7,7 @@ use App\Character;
 use Illuminate\Http\Request;
 use App\Armor;
 use App\Weapon;
+use App\CharacterClass;
 
 class CharacterController extends BaseController
 {
@@ -45,7 +46,7 @@ class CharacterController extends BaseController
      *   ),
      *   @SWG\Response(
      *     response=404,
-     *     description="Unable to find armor or weapon by id.",
+     *     description="Unable to find armor, class, or weapon by id.",
      *     @SWG\Schema(@SWG\Property(property="message", type ="string", default="error message"))
      *   )
      * )
@@ -59,7 +60,8 @@ class CharacterController extends BaseController
             'damage_bonus' => 'required|integer|max:99999999999',
             'defense_bonus' => 'required|integer|max:99999999999',
             'weapon_id' => 'required|integer|max:99999999999',
-            'armor_id' => 'required|integer|max:99999999999'
+            'armor_id' => 'required|integer|max:99999999999',
+            'class_id' => 'required|integer|max:99999999999'
         ]);
 
         $armor = Armor::where('id', $request->armor_id)->first();
@@ -74,6 +76,12 @@ class CharacterController extends BaseController
             return response()->json(['message' => $message ], 404);
         }
 
+        $class = CharacterClass::where('id', $request->class_id)->first();
+        if($class == NULL) {
+            $class = "Class not found with id: " . $request->class_id;
+            return response()->json(['message' => $message ], 404);
+        }
+
         $character = new Character();
         $character->name = $request->name;
         $character->health = $request->health;
@@ -82,6 +90,7 @@ class CharacterController extends BaseController
         $character->defense_bonus = $request->defense_bonus;
         $character->weapon()->associate($weapon->id);
         $character->armor()->associate($armor->id);
+        $character->class()->associate($class->id);
         $character->save();
 
         return Character::findOrFail($character->id);
