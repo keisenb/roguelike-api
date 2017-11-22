@@ -250,13 +250,380 @@
                 }
             }
         },
-        "/messages/{id}": {
+        "/characters": {
+            "post": {
+                "tags": [
+                    "Character"
+                ],
+                "summary": "Creates a new character.",
+                "parameters": [
+                    {
+                        "name": "character",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PostCharacter"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The created character object.",
+                        "schema": {
+                            "$ref": "#/definitions/Character"
+                        }
+                    },
+                    "401": {
+                        "description": "unauthorized, invalid token, missing token, expired token.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity, missing parameter, invalid parameter.",
+                        "schema": {
+                            "properties": {
+                                "parameter_name": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Unable to find armor or weapon by id.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/characters/{id}": {
             "get": {
                 "tags": [
-                    "Messages"
+                    "Character"
                 ],
-                "summary": "list message by userid",
+                "summary": "return character by id",
                 "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UUID",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A character object",
+                        "schema": {
+                            "$ref": "#/definitions/Character"
+                        }
+                    },
+                    "404": {
+                        "description": "no character w/ id found in table, or an error."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Character"
+                ],
+                "summary": "Updates an existing character, all parameters are optional. Pass only what's needed to be updated.",
+                "parameters": [
+                    {
+                        "name": "character",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateCharacter"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The updated character object.",
+                        "schema": {
+                            "$ref": "#/definitions/Character"
+                        }
+                    },
+                    "401": {
+                        "description": "unauthorized, invalid token, missing token, expired token.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity, missing parameter, invalid parameter.",
+                        "schema": {
+                            "properties": {
+                                "parameter_name": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Unable to find character for killed_by parameter.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/characters/history": {
+            "get": {
+                "tags": [
+                    "Character History"
+                ],
+                "summary": "lists all character histories",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list with character histories",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/CharacterHistory"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "no character histories in table, or an error."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Character History"
+                ],
+                "summary": "Creates a new character.",
+                "parameters": [
+                    {
+                        "name": "character_history",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PostCharacterHistory"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The created character history object.",
+                        "schema": {
+                            "$ref": "#/definitions/NewCharacterHistory"
+                        }
+                    },
+                    "401": {
+                        "description": "unauthorized, invalid token, missing token, expired token.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity, missing parameter, invalid parameter.",
+                        "schema": {
+                            "properties": {
+                                "parameter_name": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Unable to find character or level by id.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/characters/history/{id}": {
+            "get": {
+                "tags": [
+                    "Character History"
+                ],
+                "summary": "list character history by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UUID",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A character history object",
+                        "schema": {
+                            "$ref": "#/definitions/CharacterHistory"
+                        }
+                    },
+                    "404": {
+                        "description": "no character history w/ id found in table, or an error."
+                    }
+                }
+            }
+        },
+        "/levels": {
+            "get": {
+                "tags": [
+                    "Levels"
+                ],
+                "summary": "lists all levels",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list with levels",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Level"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "no levels in table, or an error."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Levels"
+                ],
+                "summary": "Creates a new level.",
+                "parameters": [
+                    {
+                        "name": "level",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateLevel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The created character object.",
+                        "schema": {
+                            "$ref": "#/definitions/NewLevel"
+                        }
+                    },
+                    "401": {
+                        "description": "unauthorized, invalid token, missing token, expired token.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity, missing parameter, invalid parameter.",
+                        "schema": {
+                            "properties": {
+                                "parameter_name": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/levels/{id}": {
+            "get": {
+                "tags": [
+                    "Levels"
+                ],
+                "summary": "returns a level by id",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -265,6 +632,25 @@
                         "type": "integer"
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "A level object",
+                        "schema": {
+                            "$ref": "#/definitions/Level"
+                        }
+                    },
+                    "404": {
+                        "description": "no level w/ id found in table, or an error."
+                    }
+                }
+            }
+        },
+        "/messages": {
+            "get": {
+                "tags": [
+                    "Messages"
+                ],
+                "summary": "list message by userid",
                 "responses": {
                     "200": {
                         "description": "A weapon object",
@@ -296,6 +682,68 @@
                     },
                     "404": {
                         "description": "no powerups in table, or an error."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Power Ups"
+                ],
+                "summary": "Creates a PickedUpPowerUp object.",
+                "parameters": [
+                    {
+                        "name": "PickedUpPowerUp",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PickedUpPowerUp"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The created PickedUpPowerUp object.",
+                        "schema": {
+                            "$ref": "#/definitions/CreatedPickedUpPowerUp"
+                        }
+                    },
+                    "401": {
+                        "description": "unauthorized, invalid token, missing token, expired token.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity, missing parameter, invalid parameter.",
+                        "schema": {
+                            "properties": {
+                                "parameter_name": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Unable to find character or power up by id.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -440,10 +888,10 @@
                             "type": "integer"
                         },
                         "strong_type": {
-                            "type": "integer"
+                            "type": "string"
                         },
                         "weak_type": {
-                            "type": "integer"
+                            "type": "string"
                         }
                     }
                 }
@@ -555,6 +1003,359 @@
                         },
                         "display_name": {
                             "type": "string"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        },
+                        "updated_at": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "CharacterHistory": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "user_id": {
+                            "type": "integer"
+                        },
+                        "character_id": {
+                            "type": "integer"
+                        },
+                        "score": {
+                            "type": "integer"
+                        },
+                        "level_id": {
+                            "type": "integer"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        },
+                        "updated_at": {
+                            "type": "string"
+                        },
+                        "character": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "starting_health": {
+                                    "type": "integer"
+                                },
+                                "starting_attack_bonus": {
+                                    "type": "integer"
+                                },
+                                "starting_damage_bonus": {
+                                    "type": "integer"
+                                },
+                                "starting_defense_bonus": {
+                                    "type": "integer"
+                                },
+                                "starting_weapon": {
+                                    "type": "integer"
+                                },
+                                "starting_armor": {
+                                    "type": "integer"
+                                },
+                                "options": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "level": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "user_id": {
+                                    "type": "integer"
+                                },
+                                "seed": {
+                                    "type": "string"
+                                },
+                                "created_at": {
+                                    "type": "string"
+                                },
+                                "updated_at": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            ]
+        },
+        "Level": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "user_id": {
+                            "type": "string"
+                        },
+                        "seed": {
+                            "type": "string"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        },
+                        "updated_at": {
+                            "type": "string"
+                        },
+                        "user": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "display_name": {
+                                    "type": "string"
+                                },
+                                "created_at": {
+                                    "type": "string"
+                                },
+                                "updated_at": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            ]
+        },
+        "PostCharacter": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "health": {
+                            "type": "integer"
+                        },
+                        "attack_bonus": {
+                            "type": "integer"
+                        },
+                        "damage_bonus": {
+                            "type": "integer"
+                        },
+                        "defense_bonus": {
+                            "type": "integer"
+                        },
+                        "weapon_id": {
+                            "properties": {
+                                "armor_id": {
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "integer"
+                        }
+                    }
+                }
+            ]
+        },
+        "Character": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "health": {
+                            "type": "integer"
+                        },
+                        "attack_bonus": {
+                            "type": "integer"
+                        },
+                        "damage_bonus": {
+                            "type": "integer"
+                        },
+                        "defense_bonus": {
+                            "type": "integer"
+                        },
+                        "weapon_id": {
+                            "type": "integer"
+                        },
+                        "armor_id": {
+                            "type": "integer"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        },
+                        "updated_at": {
+                            "type": "string"
+                        },
+                        "killed_by": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            ]
+        },
+        "UpdateCharacter": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "health": {
+                            "type": "integer"
+                        },
+                        "attack_bonus": {
+                            "type": "integer"
+                        },
+                        "damage_bonus": {
+                            "type": "integer"
+                        },
+                        "defense_bonus": {
+                            "type": "integer"
+                        },
+                        "weapon_id": {
+                            "type": "integer"
+                        },
+                        "armor_id": {
+                            "type": "integer"
+                        },
+                        "killed_by": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            ]
+        },
+        "CreateLevel": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "seed": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "NewLevel": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "user_id": {
+                            "type": "integer"
+                        },
+                        "seed": {
+                            "type": "string"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        },
+                        "updated_at": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "PostCharacterHistory": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "character_id": {
+                            "type": "integer"
+                        },
+                        "level_id": {
+                            "type": "integer"
+                        },
+                        "score": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            ]
+        },
+        "NewCharacterHistory": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "user_id": {
+                            "type": "integer"
+                        },
+                        "character_id": {
+                            "type": "integer"
+                        },
+                        "score": {
+                            "type": "integer"
+                        },
+                        "level_id": {
+                            "type": "integer"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        },
+                        "updated_at": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "PickedUpPowerUp": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "character_id": {
+                            "type": "integer"
+                        },
+                        "power_up_id": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            ]
+        },
+        "CreatedPickedUpPowerUp": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "character_id": {
+                            "type": "integer"
+                        },
+                        "power_up_id": {
+                            "type": "integer"
                         },
                         "created_at": {
                             "type": "string"
