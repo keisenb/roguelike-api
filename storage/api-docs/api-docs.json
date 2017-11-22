@@ -664,6 +664,59 @@
                 }
             }
         },
+        "/message": {
+            "post": {
+                "tags": [
+                    "Messages"
+                ],
+                "summary": "Sends a message.",
+                "parameters": [
+                    {
+                        "name": "message",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Message"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sent message.",
+                        "schema": {
+                            "$ref": "#definitions/Message"
+                        }
+                    },
+                    "401": {
+                        "description": "unauthorized, invalid token, missing token, expired token.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity, missing parameter, invalid parameter.",
+                        "schema": {
+                            "properties": {
+                                "parameter_name": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/powerups": {
             "get": {
                 "tags": [

@@ -11,10 +11,10 @@ class MessageController extends BaseController
      * @SWG\Get(
      *   path="/messages",
      *   tags={"Messages"},
-     *   summary="list message by userid",
+     *   summary="List messages by user",
      *   @SWG\Response(
      *     response=200,
-     *     description="A weapon object",
+     *     description="A message object",
      *     @SWG\Schema(ref="#/definitions/Message")
      *   ),
      *   @SWG\Response(
@@ -28,6 +28,40 @@ class MessageController extends BaseController
         return Message::findOrFail(Auth::user());
     }
 
+    /**
+     * @SWG\Post(
+     *   path="/message",
+     *   tags={"Messages"},
+     *   summary="Sends a message.",
+     *   @SWG\Parameter(
+     *     name="message",
+     *     in="body",
+     *     required=true,
+     *     @SWG\Schema(ref="#/definitions/Message"),
+     *   ),
+     *   @SWG\Parameter(
+     *       name="token",
+     * 		 in="header",
+     * 		 required=true,
+     *       type="string"
+     *	 ),
+     *   @SWG\Response(
+     *     response=200,
+     *     description="Sent message.",
+     *     @SWG\Schema(ref="#definitions/Message")
+     *   ),
+     *   @SWG\Response(
+     *     response=401,
+     *     description="unauthorized, invalid token, missing token, expired token.",
+     *     @SWG\Schema(@SWG\Property(property="message", type ="string"))
+     *   ),
+     *   @SWG\Response(
+     *     response=422,
+     *     description="Unprocessable Entity, missing parameter, invalid parameter.",
+     *     @SWG\Schema(@SWG\Property(property="parameter_name", type ="string", default="error message"))
+     *   )
+     * )
+     */
     public function SendMessage(Request $request)
     {
         $this->validate($request, [
