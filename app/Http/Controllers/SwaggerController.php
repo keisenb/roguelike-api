@@ -169,9 +169,9 @@ use App\Armor;
  *                  @SWG\Property(property="attack_bonus", type="integer"),
  *                  @SWG\Property(property="damage_bonus", type="integer"),
  *                  @SWG\Property(property="defense_bonus", type="integer"),
- *                  @SWG\Property(property="weapon_id", type="integer",
+ *                  @SWG\Property(property="weapon_id", type="integer"),
  *                  @SWG\Property(property="armor_id", type="integer"),
- *                  ),
+ *                  @SWG\Property(property="class_id", type="integer"),
  *              )
  *          }
  *      ),
@@ -188,6 +188,7 @@ use App\Armor;
  *                  @SWG\Property(property="defense_bonus", type="integer"),
  *                  @SWG\Property(property="weapon_id", type="integer"),
  *                  @SWG\Property(property="armor_id", type="integer"),
+ *                  @SWG\Property(property="class_id", type="integer"),
  *                  @SWG\Property(property="created_at", type="string"),
  *                  @SWG\Property(property="updated_at", type="string"),
  *                  @SWG\Property(property="killed_by", type="integer"),
