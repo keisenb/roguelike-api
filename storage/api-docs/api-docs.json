@@ -585,7 +585,7 @@
                         }
                     },
                     "404": {
-                        "description": "Unable to find character history.",
+                        "description": "Unable to find character history .",
                         "schema": {
                             "properties": {
                                 "message": {
