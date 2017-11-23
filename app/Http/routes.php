@@ -22,6 +22,7 @@ $app->group(['prefix' => 'api', 'namespace' => 'App\Http\Controllers'], function
 
     //auth
     $app->post('/login', 'AuthController@login');
+    $app->post('/register', 'AuthController@register');
 
     //powerups
     $app->get('/powerups', 'PowerUpController@GetPowerUps');
@@ -56,6 +57,7 @@ $app->group(['middleware' => ['jwt.auth:api'], 'prefix' => 'api', 'namespace' =>
 
     //User
     $app->get('/user', 'UserController@GetUser');
+    $app->put('/user', 'UserController@UpdateUser');
 
     //logout
     $app->get('/logout', 'AuthController@logout');
@@ -78,6 +80,10 @@ $app->group(['middleware' => ['jwt.auth:api'], 'prefix' => 'api', 'namespace' =>
 
     //powerups
     $app->post('/powerups', 'PowerUpController@PickedUpPowerUp');
+
+    //messages
+    $app->get('/messages', 'MessageController@GetUserMessages');
+    $app->post('/messages', 'MessageController@SendMessage');
 
     //friends
     $app->get('/friends', 'FriendController@GetFriends');

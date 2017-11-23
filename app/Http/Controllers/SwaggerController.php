@@ -304,6 +304,29 @@ use App\Armor;
  *              )
  *          }
  *      ),
+ *      @SWG\Definition(
+ *          definition="Message",
+ *          type="object",
+ *          allOf={
+ *              @SWG\Schema(
+ *                  @SWG\Property(property="sender_id", type="integer"),
+ *                  @SWG\Property(property="recipient_id", type="integer"),
+ *                  @SWG\Property(property="content", type="string"),
+ *                  @SWG\Property(property="created_at", type="string"),
+ *                  @SWG\Property(property="updated_at", type="string")
+ *              )
+ *          }
+ *      ),
+ *      @SWG\Definition(
+ *          definition="NewMessage",
+ *          type="object",
+ *          allOf={
+ *              @SWG\Schema(
+ *                  @SWG\Property(property="display_name", type="string"),
+ *                  @SWG\Property(property="content", type="string"),
+ *              )
+ *          }
+ *      ),
  *       @SWG\Definition(
  *          definition="Friend",
  *          type="object",
@@ -328,6 +351,18 @@ use App\Armor;
 *              @SWG\Schema(
 *                  @SWG\Property(property="score", type="integer"),
 *                  @SWG\Property(property="level_id", type="integer")
+*              )
+*          }
+*      ),
+*      @SWG\Definition(
+*          definition="UpdateUser",
+*          type="object",
+*          allOf={
+*              @SWG\Schema(
+*                  @SWG\Property(property="email", type="string"),
+*                  @SWG\Property(property="display_name", type="string"),
+*                  @SWG\Property(property="password", type="string"),
+*                  @SWG\Property(property="password_confirmation", type="string"),
 *              )
 *          }
 *      ),
