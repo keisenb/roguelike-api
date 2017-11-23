@@ -147,9 +147,65 @@ class CharacterHistoryController extends BaseController
 
         return CharacterHistory::findOrFail($history->id);
 
+    }
 
 
+    /**
+     * @SWG\Put(
+     *   path="/characters/history/{id}",
+     *   tags={"Character History"},
+     *   summary="Updates an existing character history, all parameters are optional. Pass only what's needed to be updated.",
+     *   @SWG\Parameter(
+     *       name="history",
+     * 		 in="body",
+     * 		 required=true,
+     * 		 @SWG\Schema(ref="#/definitions/UpdateCharacterHistory"),
+     *	 ),
+     *   @SWG\Parameter(
+     *       name="token",
+     * 		 in="header",
+     * 		 required=true,
+     *       type="string"
+     *	 ),
+     *   @SWG\Response(
+     *     response=200,
+     *     description="The updated character history object.",
+     *     @SWG\Schema(ref="#/definitions/NewCharacterHistory")
+     *   ),
+     *   @SWG\Response(
+     *     response=401,
+     *     description="unauthorized, invalid token, missing token, expired token.",
+     *     @SWG\Schema(@SWG\Property(property="message", type ="string"))
+     *   ),
+     *   @SWG\Response(
+     *     response=422,
+     *     description="Unprocessable Entity, missing parameter, invalid parameter.",
+     *     @SWG\Schema(@SWG\Property(property="parameter_name", type ="string", default="error message"))
+     *   ),
+     *   @SWG\Response(
+     *     response=404,
+     *     description="Unable to find character history .",
+     *     @SWG\Schema(@SWG\Property(property="message", type ="string", default="error message"))
+     *   )
+     * )
+     */
+    public function UpdateCharacterHistory(Request $request, $id) {
+        $history = CharacterHistory::findOrFail($id);
 
+        $this->validate($request, [
+            'score' => 'integer|max:99999999999',
+            'level_id' => 'integer|max:99999999999'
+        ]);
+
+        if ($request->has('score')) {
+            $history->score = $request->score;
+        }
+        if ($request->has('level_id')) {
+            $level = Level::findOrFail($request->level_id);
+            $history->level()->associate($level->id);
+        }
+        $history->save();
+        return CharacterHistory::findOrFail($history->id);
 
     }
 

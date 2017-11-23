@@ -18,6 +18,7 @@ class CreateLevelsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('seed');
+            $table->integer('number');
             $table->timestamps();
         });
     }

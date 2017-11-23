@@ -534,6 +534,219 @@
                         "description": "no character history w/ id found in table, or an error."
                     }
                 }
+            },
+            "put": {
+                "tags": [
+                    "Character History"
+                ],
+                "summary": "Updates an existing character history, all parameters are optional. Pass only what's needed to be updated.",
+                "parameters": [
+                    {
+                        "name": "history",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateCharacterHistory"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The updated character history object.",
+                        "schema": {
+                            "$ref": "#/definitions/NewCharacterHistory"
+                        }
+                    },
+                    "401": {
+                        "description": "unauthorized, invalid token, missing token, expired token.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity, missing parameter, invalid parameter.",
+                        "schema": {
+                            "properties": {
+                                "parameter_name": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Unable to find character history .",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/friends": {
+            "get": {
+                "tags": [
+                    "Friends"
+                ],
+                "summary": "lists all friends for current user",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list with friends",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Friend"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "no friends in table, or an error."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Friends"
+                ],
+                "summary": "Adds a friend by username.",
+                "parameters": [
+                    {
+                        "name": "friend",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AddFriend"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Added friend.",
+                        "schema": {
+                            "$ref": "#/definitions/Friend"
+                        }
+                    },
+                    "401": {
+                        "description": "unauthorized, invalid token, missing token, expired token.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Already friends with user.",
+                        "schema": {
+                            "properties": {
+                                "parameter_name": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Unable to find friend by username",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Friends"
+                ],
+                "summary": "Deletes a friend by username.",
+                "parameters": [
+                    {
+                        "name": "friend",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AddFriend"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "successfully deleted friend."
+                    },
+                    "401": {
+                        "description": "unauthorized, invalid token, missing token, expired token.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Unable to find friend by username.",
+                        "schema": {
+                            "properties": {
+                                "parameter_name": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Not friends with user with the display name.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/levels": {
@@ -1102,6 +1315,9 @@
                                 "seed": {
                                     "type": "string"
                                 },
+                                "number": {
+                                    "type": "integer"
+                                },
                                 "created_at": {
                                     "type": "string"
                                 },
@@ -1128,6 +1344,9 @@
                         },
                         "seed": {
                             "type": "string"
+                        },
+                        "number": {
+                            "type": "integer"
                         },
                         "created_at": {
                             "type": "string"
@@ -1274,6 +1493,9 @@
                     "properties": {
                         "seed": {
                             "type": "string"
+                        },
+                        "number": {
+                            "type": "integer"
                         }
                     }
                 }
@@ -1292,6 +1514,9 @@
                         },
                         "seed": {
                             "type": "string"
+                        },
+                        "number": {
+                            "type": "integer"
                         },
                         "created_at": {
                             "type": "string"
@@ -1385,6 +1610,70 @@
                         },
                         "updated_at": {
                             "type": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "AddFriend": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "display_name": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "Friend": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "id1": {
+                            "type": "integer"
+                        },
+                        "id2": {
+                            "type": "integer"
+                        },
+                        "user1": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "user2": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            ]
+        },
+        "UpdateCharacterHistory": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "score": {
+                            "type": "integer"
+                        },
+                        "level_id": {
+                            "type": "integer"
                         }
                     }
                 }
