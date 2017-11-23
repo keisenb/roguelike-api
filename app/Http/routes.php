@@ -38,8 +38,6 @@ $app->group(['prefix' => 'api', 'namespace' => 'App\Http\Controllers'], function
     //weapons
     $app->get('/weapons', 'WeaponController@GetWeapons');
     $app->get('/weapons/{id}', 'WeaponController@GetWeaponById');
-
-
 });
 
 //authenticated endpoints
@@ -76,6 +74,10 @@ $app->group(['middleware' => ['jwt.auth:api'], 'prefix' => 'api', 'namespace' =>
 
     //powerups
     $app->post('/powerups', 'PowerUpController@PickedUpPowerUp');
+
+    //messages
+    $app->get('/messages', 'MessageController@GetUserMessages');
+    $app->post('/messages', 'MessageController@SendMessage');
 
     //friends
     $app->get('/friends', 'FriendController@GetFriends');

@@ -858,6 +858,105 @@
                 }
             }
         },
+        "/messages": {
+            "get": {
+                "tags": [
+                    "Messages"
+                ],
+                "summary": "List messages by user",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A message object",
+                        "schema": {
+                            "$ref": "#/definitions/Message"
+                        }
+                    },
+                    "404": {
+                        "description": "no messages by user found in table, or an error.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/message": {
+            "post": {
+                "tags": [
+                    "Messages"
+                ],
+                "summary": "Sends a message.",
+                "parameters": [
+                    {
+                        "name": "message",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NewMessage"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sent message.",
+                        "schema": {
+                            "$ref": "#/definitions/Message"
+                        }
+                    },
+                    "401": {
+                        "description": "unauthorized, invalid token, missing token, expired token.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity, missing parameter, invalid parameter.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "unable to find user or friend entities.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/powerups": {
             "get": {
                 "tags": [
@@ -1621,6 +1720,45 @@
                 {
                     "properties": {
                         "display_name": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "Message": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "sender_id": {
+                            "type": "integer"
+                        },
+                        "recipient_id": {
+                            "type": "integer"
+                        },
+                        "content": {
+                            "type": "string"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        },
+                        "updated_at": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "NewMessage": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "display_name": {
+                            "type": "string"
+                        },
+                        "content": {
                             "type": "string"
                         }
                     }
