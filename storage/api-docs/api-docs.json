@@ -650,10 +650,10 @@
                 "tags": [
                     "Messages"
                 ],
-                "summary": "list message by userid",
+                "summary": "List messages by user",
                 "responses": {
                     "200": {
-                        "description": "A weapon object",
+                        "description": "A message object",
                         "schema": {
                             "$ref": "#/definitions/Message"
                         }

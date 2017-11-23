@@ -75,6 +75,6 @@ $app->group(['middleware' => ['jwt.auth:api'], 'prefix' => 'api', 'namespace' =>
     $app->post('/powerups', 'PowerUpController@PickedUpPowerUp');
 
     //messages
-    $app->get('/messages/{id}', 'MessageController@GetUserMessages');
+    $app->get('/messages', 'MessageController@GetUserMessages');
     $app->post('/messages', 'MessageController@SendMessage');
 });

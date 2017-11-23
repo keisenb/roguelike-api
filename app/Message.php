@@ -12,4 +12,14 @@ class Message extends Model
         'sender_id', 'recipient_id', 'content',
         'created_at', 'updated_at'
     ];
+
+    public function sender()
+    {
+        return $this->belongsTo('App\User', 'sender_id');
+    }
+
+    public function recipient()
+    {
+        return $this->belongsTo('App\User', 'recipient_id');
+    }
 }
