@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Friend extends Model
 {
 	protected $table = 'friends';
+	public $timestamps = false;
+
 
     protected $fillable = [
         'id1', 'id2'

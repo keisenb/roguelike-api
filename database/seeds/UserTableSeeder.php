@@ -27,7 +27,7 @@ class UserTableSeeder extends Seeder
         foreach (range(1,99) as $index) {
             $user = new User;
             $user->email = $faker->unique()->email;
-            $user->display_name = $faker->userName;
+            $user->display_name = $faker->unique()->userName;
             $user->password = app('hash')->make('password');//bcrypt('password');
             $user->save();
         }
