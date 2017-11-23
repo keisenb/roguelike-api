@@ -22,6 +22,7 @@ $app->group(['prefix' => 'api', 'namespace' => 'App\Http\Controllers'], function
 
     //auth
     $app->post('/login', 'AuthController@login');
+    $app->post('/register', 'AuthController@register');
 
     //powerups
     $app->get('/powerups', 'PowerUpController@GetPowerUps');
