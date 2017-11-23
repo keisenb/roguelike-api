@@ -321,7 +321,16 @@ use App\Armor;
  *              ))
  *          }
 *        ),
-
+*      @SWG\Definition(
+*          definition="UpdateCharacterHistory",
+*          type="object",
+*          allOf={
+*              @SWG\Schema(
+*                  @SWG\Property(property="score", type="integer"),
+*                  @SWG\Property(property="level_id", type="integer")
+*              )
+*          }
+*      ),
  *  )
  */
 

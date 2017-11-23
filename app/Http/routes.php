@@ -62,6 +62,7 @@ $app->group(['middleware' => ['jwt.auth:api'], 'prefix' => 'api', 'namespace' =>
     $app->get('/characters/history', 'CharacterHistoryController@GetCharacterHistories');
     $app->get('/characters/history/{id}', 'CharacterHistoryController@GetCharacterHistoryById');
     $app->post('/characters/history', 'CharacterHistoryController@CreateCharacterHistory');
+    $app->put('/characters/history/{id}', 'CharacterHistoryController@UpdateCharacterHistory');
 
     //levels
     $app->get('/levels', 'LevelController@GetLevels');

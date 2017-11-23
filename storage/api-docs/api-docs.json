@@ -534,6 +534,68 @@
                         "description": "no character history w/ id found in table, or an error."
                     }
                 }
+            },
+            "put": {
+                "tags": [
+                    "Character History"
+                ],
+                "summary": "Updates an existing character history, all parameters are optional. Pass only what's needed to be updated.",
+                "parameters": [
+                    {
+                        "name": "history",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateCharacterHistory"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The updated character history object.",
+                        "schema": {
+                            "$ref": "#/definitions/NewCharacterHistory"
+                        }
+                    },
+                    "401": {
+                        "description": "unauthorized, invalid token, missing token, expired token.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity, missing parameter, invalid parameter.",
+                        "schema": {
+                            "properties": {
+                                "parameter_name": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Unable to find character history.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/friends": {
@@ -1597,6 +1659,21 @@
                                 }
                             },
                             "type": "object"
+                        }
+                    }
+                }
+            ]
+        },
+        "UpdateCharacterHistory": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "score": {
+                            "type": "integer"
+                        },
+                        "level_id": {
+                            "type": "integer"
                         }
                     }
                 }
