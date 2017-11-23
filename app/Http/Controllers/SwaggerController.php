@@ -41,7 +41,6 @@ use App\Armor;
  *              )
  *          }
  *      ),
-
  *       @SWG\Definition(
  *          definition="CharacterClass",
  *          type="object",
@@ -143,6 +142,7 @@ use App\Armor;
  *                      @SWG\Property(property="id", type="integer"),
  *                      @SWG\Property(property="user_id", type="integer"),
  *                      @SWG\Property(property="seed", type="string"),
+ *                      @SWG\Property(property="number", type="integer"),
  *                      @SWG\Property(property="created_at", type="string"),
  *                      @SWG\Property(property="updated_at", type="string"),
  *                  )
@@ -159,6 +159,7 @@ use App\Armor;
  *                  @SWG\Property(property="id", type="integer"),
  *                  @SWG\Property(property="user_id", type="string"),
  *                  @SWG\Property(property="seed", type="string"),
+ *                  @SWG\Property(property="number", type="integer"),
  *                  @SWG\Property(property="created_at", type="string"),
  *                  @SWG\Property(property="updated_at", type="string"),
  *                  @SWG\Property(property="user", type="object",
@@ -167,7 +168,6 @@ use App\Armor;
  *                      @SWG\Property(property="display_name", type="string"),
  *                      @SWG\Property(property="created_at", type="string"),
  *                      @SWG\Property(property="updated_at", type="string"),
-
  *                  ), *              )
  *          }
  *      ),
@@ -227,7 +227,8 @@ use App\Armor;
  *          type="object",
  *          allOf={
  *              @SWG\Schema(
- *                  @SWG\Property(property="seed", type="string")
+ *                  @SWG\Property(property="seed", type="string"),
+ *                  @SWG\Property(property="number", type="integer")
  *              )
  *          }
  *      ),
@@ -239,6 +240,7 @@ use App\Armor;
  *                  @SWG\Property(property="id", type="integer"),
  *                  @SWG\Property(property="user_id", type="integer"),
  *                  @SWG\Property(property="seed", type="string"),
+ *                  @SWG\Property(property="number", type="integer"),
  *                  @SWG\Property(property="created_at", type="string"),
  *                  @SWG\Property(property="updated_at", type="string"),
  *              )
@@ -294,9 +296,35 @@ use App\Armor;
  *          }
  *      ),
  *      @SWG\Definition(
- *          
- *      )
+ *          definition="AddFriend",
+ *          type="object",
+ *          allOf={
+ *              @SWG\Schema(
+ *                  @SWG\Property(property="display_name", type="string")
+ *              )
+ *          }
+ *      ),
+ *       @SWG\Definition(
+ *          definition="Friend",
+ *          type="object",
+ *          allOf={
+ *              @SWG\Schema(
+ *                  @SWG\Property(property="id1", type="integer"),
+ *                  @SWG\Property(property="id2", type="integer"),
+ *                  @SWG\Property(property="user1", type="object",
+ *                      @SWG\Property(property="id", type="integer"),
+ *                      @SWG\Property(property="name", type="string"),
+ *                  ),
+ *                  @SWG\Property(property="user2", type="object",
+ *                      @SWG\Property(property="id", type="integer"),
+ *                      @SWG\Property(property="name", type="string")
+ *              ))
+ *          }
+*        ),
+
+ *  )
  */
+
 class SwaggerController extends BaseController
 {
 
