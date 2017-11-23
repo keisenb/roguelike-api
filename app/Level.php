@@ -9,7 +9,7 @@ class Level extends Model
 	protected $table = 'levels';
 
     protected $fillable = [
-		'user_id', 'seed' ];
+		'user_id', 'seed', 'number' ];
 
 
 	public function user() {

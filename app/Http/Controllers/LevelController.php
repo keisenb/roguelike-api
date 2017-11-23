@@ -106,7 +106,8 @@ class LevelController extends BaseController
      */
     public function CreateLevel(Request $request) {
         $this->validate($request, [
-            'seed'    => 'required|max:255'
+            'seed'    => 'required|max:255',
+            'number'  => 'required|max:99999999999'
         ]);
 
         $user = Auth::user();
@@ -114,6 +115,7 @@ class LevelController extends BaseController
         $level = new Level();
         $level->user()->associate($user->id);
         $level->seed = $request->seed;
+        $level->number = $request->number;
         $level->save();
 
         return Level::findOrFail($level->id);
