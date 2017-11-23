@@ -354,6 +354,18 @@ use App\Armor;
 *              )
 *          }
 *      ),
+*      @SWG\Definition(
+*          definition="UpdateUser",
+*          type="object",
+*          allOf={
+*              @SWG\Schema(
+*                  @SWG\Property(property="email", type="string"),
+*                  @SWG\Property(property="display_name", type="string"),
+*                  @SWG\Property(property="password", type="string"),
+*                  @SWG\Property(property="password_confirmation", type="string"),
+*              )
+*          }
+*      ),
  *  )
  */
 
