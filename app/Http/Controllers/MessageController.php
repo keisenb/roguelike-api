@@ -62,7 +62,7 @@ class MessageController extends BaseController
 
     /**
      * @SWG\Post(
-     *   path="/message",
+     *   path="/messages",
      *   tags={"Messages"},
      *   summary="Sends a message.",
      *   @SWG\Parameter(
