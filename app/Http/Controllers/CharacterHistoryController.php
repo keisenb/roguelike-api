@@ -184,7 +184,7 @@ class CharacterHistoryController extends BaseController
      *   ),
      *   @SWG\Response(
      *     response=404,
-     *     description="Unable to find character history.",
+     *     description="Unable to find character history .",
      *     @SWG\Schema(@SWG\Property(property="message", type ="string", default="error message"))
      *   )
      * )
