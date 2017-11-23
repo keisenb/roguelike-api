@@ -864,6 +864,14 @@
                     "Messages"
                 ],
                 "summary": "List messages by user",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "A message object",
@@ -872,7 +880,15 @@
                         }
                     },
                     "404": {
-                        "description": "no messages by user found in table, or an error."
+                        "description": "no messages by user found in table, or an error.",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -889,7 +905,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Message"
+                            "$ref": "#/definitions/NewMessage"
                         }
                     },
                     {
@@ -903,7 +919,7 @@
                     "200": {
                         "description": "Sent message.",
                         "schema": {
-                            "$ref": "#definitions/Message"
+                            "$ref": "#/definitions/Message"
                         }
                     },
                     "401": {
@@ -920,7 +936,18 @@
                         "description": "Unprocessable Entity, missing parameter, invalid parameter.",
                         "schema": {
                             "properties": {
-                                "parameter_name": {
+                                "message": {
+                                    "type": "string",
+                                    "default": "error message"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "unable to find user or friend entities.",
+                        "schema": {
+                            "properties": {
+                                "message": {
                                     "type": "string",
                                     "default": "error message"
                                 }
@@ -1717,6 +1744,21 @@
                             "type": "string"
                         },
                         "updated_at": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "NewMessage": {
+            "type": "object",
+            "allOf": [
+                {
+                    "properties": {
+                        "display_name": {
+                            "type": "string"
+                        },
+                        "content": {
                             "type": "string"
                         }
                     }

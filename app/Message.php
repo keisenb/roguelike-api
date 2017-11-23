@@ -8,8 +8,9 @@ class Message extends Model
 {
     protected $table = 'messages';
 
+
     protected $fillable = [
-        'sender_id', 'recipient_id', 'content',
+        'sender_id', 'recipient_id', 'content', 'read',
         'created_at', 'updated_at'
     ];
 

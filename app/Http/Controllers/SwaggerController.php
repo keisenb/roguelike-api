@@ -317,6 +317,16 @@ use App\Armor;
  *              )
  *          }
  *      ),
+ *      @SWG\Definition(
+ *          definition="NewMessage",
+ *          type="object",
+ *          allOf={
+ *              @SWG\Schema(
+ *                  @SWG\Property(property="display_name", type="string"),
+ *                  @SWG\Property(property="content", type="string"),
+ *              )
+ *          }
+ *      ),
  *       @SWG\Definition(
  *          definition="Friend",
  *          type="object",
