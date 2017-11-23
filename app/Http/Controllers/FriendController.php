@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Laravel\Lumen\Routing\Controller as BaseController;
-use App\Friends;
+use App\Friend;
+use Auth;
+use Illuminate\Http\Request;
 
 
-class FriendsController extends BaseController
+class FriendController extends BaseController
 {
 
     /**
@@ -31,18 +33,24 @@ class FriendsController extends BaseController
      *     @SWG\Schema(@SWG\Property(property="message", type ="string"))
      *   ),
      */
-    public function Add($id)
+    public function AddFriend($id)
     {
-        
+
     }
 
-    public function Delete($id)
+    public function DeleteFriend(Request $request)
     {
-        Friends->where('email2', '=', $id)->delete();
+        //Friends::where('email2', $id)->delete();
     }
 
-    public function Get($id)
+    public function GetFriends()
     {
-        return Friends::findOrFail($id);
+        //todo add with user to query
+        $user = Auth::user();
+        $friends = Friend::where('id1', $user->id)
+                ->orWhere('id2', $user->id)
+                ->with(['user1', 'user2'])
+                ->get();
+        return $friends;
     }
 }
