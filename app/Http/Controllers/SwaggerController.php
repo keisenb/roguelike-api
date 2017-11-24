@@ -343,29 +343,39 @@ use App\Armor;
  *                      @SWG\Property(property="name", type="string")
  *              ))
  *          }
-*        ),
-*      @SWG\Definition(
-*          definition="UpdateCharacterHistory",
-*          type="object",
-*          allOf={
-*              @SWG\Schema(
-*                  @SWG\Property(property="score", type="integer"),
-*                  @SWG\Property(property="level_id", type="integer")
-*              )
-*          }
-*      ),
-*      @SWG\Definition(
-*          definition="UpdateUser",
-*          type="object",
-*          allOf={
-*              @SWG\Schema(
-*                  @SWG\Property(property="email", type="string"),
-*                  @SWG\Property(property="display_name", type="string"),
-*                  @SWG\Property(property="password", type="string"),
-*                  @SWG\Property(property="password_confirmation", type="string"),
-*              )
-*          }
-*      ),
+ *        ),
+ *      @SWG\Definition(
+ *          definition="UpdateCharacterHistory",
+ *          type="object",
+ *          allOf={
+ *              @SWG\Schema(
+ *                  @SWG\Property(property="score", type="integer"),
+ *                  @SWG\Property(property="level_id", type="integer")
+ *              )
+ *          }
+ *      ),
+ *      @SWG\Definition(
+ *          definition="UpdateUser",
+ *          type="object",
+ *          allOf={
+ *              @SWG\Schema(
+ *                  @SWG\Property(property="email", type="string"),
+ *                  @SWG\Property(property="display_name", type="string"),
+ *                  @SWG\Property(property="password", type="string"),
+ *                  @SWG\Property(property="password_confirmation", type="string"),
+ *              )
+ *          }
+ *      ),
+ *      @SWG\Definition(
+ *        definition="classItems",
+ *        type="object",
+ *        allOf={
+ *          @SWG\Schema(
+ *            @SWG\Property(property="character_class_id", type="integer"),
+ *            @SWG\Property(property="item_id", type="integer"),
+ *          )
+ *        }
+ *      ),
  *  )
  */
 
