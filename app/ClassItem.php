@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Weapon;
+use App\Armor;
+use App\CharacterClass;
 
 class ClassItem extends Model
 {
@@ -24,6 +27,5 @@ class ClassItem extends Model
         // obv this won't work as is...
         return $this->belongsTo('App\Weapon', 'item_id') || 
                $this->belongsTo('App\Armor', 'item_id');
-        
     }
 }
