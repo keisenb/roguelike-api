@@ -78,7 +78,7 @@ class WeaponTableSeeder extends Seeder
 
 
 
-            ['id' => 11, 'name' => 'Magic Missle', 'attack_type' => 'Magic',
+            ['id' => 11, 'name' => 'Magic Missile', 'attack_type' => 'Magic',
             'max_damage' => 6, 'min_damage' => 2, 'damage_type' => 'm',
             'range' => 6, 'hit_bonus' => 0, 'attack_effect' => '',
             'properties' => 'Unerring Accuracy', 'properties_short' => '100% Acc',

@@ -39,7 +39,12 @@ class CharacterHistoryController extends BaseController
      * )
      */
     public function GetCharacterHistories() {
-        $histories = CharacterHistory::with(['character.class', 'level', 'character.killed'])->get();
+        $user = Auth::user();
+        if($user == NULL) {
+            $message = "user not found.";
+            return response()->json(['message' => $message ], 404);
+        }
+        $histories = CharacterHistory::with(['character.class', 'level', 'character.killed'])->where('user_id', $user->id)->get();
         return $histories;
     }
 
@@ -73,7 +78,12 @@ class CharacterHistoryController extends BaseController
      * )
      */
     public function GetCharacterHistoryById($id) {
-        return CharacterHistory::with('character.class', 'level', 'character.killed')->findOrFail($id);
+        $user = Auth::user();
+        if($user == NULL) {
+            $message = "user not found.";
+            return response()->json(['message' => $message ], 404);
+        }
+        return CharacterHistory::with('character.class', 'level', 'character.killed')->where('user_id', $user->id)->findOrFail($id);
     }
 
 
