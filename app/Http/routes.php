@@ -40,6 +40,9 @@ $app->group(['prefix' => 'api', 'namespace' => 'App\Http\Controllers'], function
     $app->get('/weapons', 'WeaponController@GetWeapons');
     $app->get('/weapons/{id}', 'WeaponController@GetWeaponById');
 
+    //stats
+    //$app->get('/statistics')
+
 });
 
 //authenticated endpoints

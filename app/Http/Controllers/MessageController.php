@@ -50,10 +50,18 @@ class MessageController extends BaseController
 
         $messages = Message::where('recipient_id', $user->id)->where('read', 0)->get();
 
+
         //mark messages as read
         foreach($messages as $message) {
             $message->read = 1;
             $message->save();
+
+            $sender = User::findOrFail($message->sender_id);
+            if($sender == null) {
+                $message = "Issue retrieving sender details for id: ".$message->sender_id;
+                return response()->json(['message' => $message ], 404);
+            }
+            $message->display_name = $sender->display_name;
         }
 
         return $messages;
