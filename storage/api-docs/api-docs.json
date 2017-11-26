@@ -1902,6 +1902,9 @@
                         },
                         "updated_at": {
                             "type": "string"
+                        },
+                        "display_name": {
+                            "type": "string"
                         }
                     }
                 }
