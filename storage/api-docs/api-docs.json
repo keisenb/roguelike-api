@@ -1522,6 +1522,44 @@
                             },
                             "type": "object"
                         },
+                        "killed": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "attack_bonus": {
+                                    "type": "integer"
+                                },
+                                "damage_bonus": {
+                                    "type": "integer"
+                                },
+                                "defense_bonus": {
+                                    "type": "integer"
+                                },
+                                "weapon_id": {
+                                    "type": "integer"
+                                },
+                                "armor_id": {
+                                    "type": "integer"
+                                },
+                                "class_id": {
+                                    "type": "integer"
+                                },
+                                "created_at": {
+                                    "type": "string"
+                                },
+                                "updated_at": {
+                                    "type": "string"
+                                },
+                                "killed_by": {
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        },
                         "level": {
                             "properties": {
                                 "id": {
