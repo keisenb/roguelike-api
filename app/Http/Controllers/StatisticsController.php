@@ -30,6 +30,7 @@ class StatisticsController extends BaseController
             array_push($ids, $level->id);
         }
 
+
         return Level::whereIn('id', $ids)
             ->with(array('user'=>function($query){
                 $query->select('id', 'display_name');
