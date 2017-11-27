@@ -9,6 +9,8 @@ use App\Character;
 use App\CharacterHistory;
 use Illuminate\Http\Request;
 
+use DB;
+
 
 class StatisticsController extends BaseController
 {
@@ -20,9 +22,21 @@ class StatisticsController extends BaseController
     }
 
     public function AllLevels() {
-        return Level::with(array('user'=>function($query){
-            $query->select('id', 'display_name');
-            }))->select('number', 'user_id')->orderBy('number', 'desc')->get();
+        $levels = Level::select(DB::raw('id, max(number) as max'))->groupBy('user_id')->get();
+
+        $ids = array();
+
+        foreach($levels as $level) {
+            array_push($ids, $level->id);
+        }
+
+        return Level::whereIn('id', $ids)
+            ->with(array('user'=>function($query){
+                $query->select('id', 'display_name');
+            }))->select('number', 'user_id')
+
+            ->orderBy('number', 'desc')
+            ->get();
     }
 
     public function UserCount() {
@@ -77,7 +91,7 @@ class StatisticsController extends BaseController
 
 
     public function AverageLevelAllGames() {
-        return "not implemented";
+        return CharacterHistory::join('levels', 'character_history.level_id', '=', 'levels.id')->get();
     }
 
 
