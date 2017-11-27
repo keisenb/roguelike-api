@@ -22,22 +22,11 @@ class StatisticsController extends BaseController
     }
 
     public function AllLevels() {
-        $levels = Level::select(DB::raw('id, max(number) as max'))->groupBy('user_id')->get();
+        return Level::select(DB::raw('user_id, max(number) as number'))
+                    ->groupBy('user_id')->with(array('user'=>function($query){
+                        $query->select('id', 'display_name');
+                    }))->get();
 
-        $ids = array();
-
-        foreach($levels as $level) {
-            array_push($ids, $level->id);
-        }
-
-
-        return Level::whereIn('id', $ids)
-            ->with(array('user'=>function($query){
-                $query->select('id', 'display_name');
-            }))->select('number', 'user_id')
-
-            ->orderBy('number', 'desc')
-            ->get();
     }
 
     public function UserCount() {
