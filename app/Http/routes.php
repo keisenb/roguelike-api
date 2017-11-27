@@ -41,7 +41,16 @@ $app->group(['prefix' => 'api', 'namespace' => 'App\Http\Controllers'], function
     $app->get('/weapons/{id}', 'WeaponController@GetWeaponById');
 
     //stats
-    //$app->get('/statistics')
+    $app->get('/statistics/scores', 'StatisticsController@AllScores');
+    $app->get('/statistics/levels', 'StatisticsController@AllLevels');
+    $app->get('/statistics/users', 'StatisticsController@UserCount');
+    $app->get('/statistics/deaths', 'StatisticsController@TotalDeaths');
+    $app->get('/statistics/monsters', 'StatisticsController@TotalMonsters');
+    $app->get('/statistics/monsters/{id}', 'StatisticsController@UserMonsters');
+    $app->get('/statistics/deaths/{id}', 'StatisticsController@UserDeaths');
+    $app->get('/statistics/classes', 'StatisticsController@ClassDistribution');
+    $app->get('/statistics/levels/games', 'StatisticsController@AverageLevelAllGames');
+
 
 });
 
