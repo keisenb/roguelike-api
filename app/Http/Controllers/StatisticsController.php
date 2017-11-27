@@ -18,7 +18,9 @@ class StatisticsController extends BaseController
     public function AllScores() {
         return CharacterHistory::with(array('user'=>function($query){
             $query->select('id','display_name');
-        }))->select('score', 'user_id')->orderBy('score', 'desc')->get();
+        }, 'character'=>function($query){
+            $query->select('id','name');
+        }) )->select('score', 'user_id', 'character_id')->orderBy('score', 'desc')->get();
     }
 
     public function AllLevels() {
@@ -81,7 +83,7 @@ class StatisticsController extends BaseController
 
 
     public function AverageLevelAllGames() {
-        return CharacterHistory::join('levels', 'character_history.level_id', '=', 'levels.id')->get();
+        return CharacterHistory::join('levels', 'character_history.level_id', '=', 'levels.id')->select(DB::raw('select avg(score) as score'))->get();
     }
 
 
